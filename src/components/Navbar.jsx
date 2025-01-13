@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const links = (
@@ -14,7 +14,7 @@ const Navbar = () => {
     <div className="bg-menu_bg">
       <div className="navbar container mx-auto">
         <div className="navbar-start">
-          <a className="md:text-xl  md:font-semibold font-bold">Zenith Care</a>
+          <Link to="/" className="md:text-xl  md:font-semibold font-bold">Zenith Care</Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{links}</ul>
