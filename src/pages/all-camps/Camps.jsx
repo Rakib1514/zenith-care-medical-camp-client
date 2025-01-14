@@ -1,6 +1,5 @@
 import SectionHeading from "../../components/SectionHeading";
 import useCampsData from "../../hooks/useCampsData";
-import CardPopularCamps from "../../components/CampCard";
 import CampCard from "../../components/CampCard";
 
 const Camps = () => {

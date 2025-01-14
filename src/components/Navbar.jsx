@@ -9,6 +9,9 @@ const Navbar = () => {
       <li>
         <NavLink to="/camps">All Camps</NavLink>
       </li>
+      <li>
+        <NavLink to="/ca">Add</NavLink>
+      </li>
     </>
   );
 

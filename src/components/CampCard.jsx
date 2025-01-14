@@ -1,6 +1,7 @@
 import { Badge } from "antd";
 import PropTypes from "prop-types";
 import { CiLocationOn, CiMoneyCheck1 } from "react-icons/ci";
+import { Link } from "react-router-dom";
 
 const CampCard = ({ camp }) => {
   const {
@@ -10,6 +11,7 @@ const CampCard = ({ camp }) => {
     participantCount,
     healthcareProfessional,
     fees,
+    _id
   } = camp;
 
   return (
@@ -63,9 +65,9 @@ const CampCard = ({ camp }) => {
             boxShadow: "0px 0px 0px 16px white",
           }}
         >
-          <button className="campCardBtn">
+          <Link to={`/camp-details/${_id}`} className="campCardBtn">
             Join
-          </button>
+          </Link>
         </div>
       </div>
     </div>
