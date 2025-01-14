@@ -20,6 +20,7 @@ const PopularCamps = () => {
     <div className="mt-12 container mx-auto px-4">
       <div>
         <SectionHeading subHeading="People Love Most" heading="Popular Camps" />
+        <div className="flex justify-center items-center"> <button className="btn btn-outline mb-4">See all Camps</button></div>
       </div>
       <div className="grid lg:grid-cols-2 md:grid-cols-4 gap-4 md:mt-0 mt-4">
         <img
