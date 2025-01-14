@@ -3,3 +3,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.campCardContainer .campCardBtn{
+  @apply w-full h-full flex justify-center items-center bg-gray-300 rounded-full hover:scale-110 border border-gray-500 font-bold text-black hover:bg-primary hover:text-white transition-all duration-200 ease-in-out btn
+}

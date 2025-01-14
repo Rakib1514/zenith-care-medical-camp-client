@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import CardPopularCamps from "./CardPopularCamps";
 import axiosPublic from "../../../Utils/axiosPublic";
 import SectionHeading from "../../../components/SectionHeading";
+import CampCard from "../../../components/CampCard";
 
 const PopularCamps = () => {
   const { data: campsData = [], isLoading } = useQuery({
@@ -17,12 +17,12 @@ const PopularCamps = () => {
   }
 
   return (
-    <div className="mt-12 container mx-auto px-4">
+    <div className="mt-12 container mx-auto px-4 campCardContainer">
       <div>
         <SectionHeading subHeading="People Love Most" heading="Popular Camps" />
         <div className="flex justify-center items-center"> <button className="btn btn-outline mb-4">See all Camps</button></div>
       </div>
-      <div className="grid lg:grid-cols-2 md:grid-cols-4 gap-4 md:mt-0 mt-4">
+      <div className="grid lg:grid-cols-2 md:grid-cols-4 gap-4 md:mt-0 mt-4 " >
         <img
           src="https://i.ibb.co.com/h8cw3cy/2148352065-1.jpg"
           alt=""
@@ -31,7 +31,7 @@ const PopularCamps = () => {
         <div className="grid grid-cols-2 gap-4 md:col-span-3 lg:col-span-1">
           {campsData.map((camp, idx) => {
             if (idx === 0 || idx === 1) {
-              return <CardPopularCamps key={camp._id} camp={camp} />;
+              return <CampCard key={camp._id} camp={camp} />;
             }
           })}
         </div>
@@ -41,7 +41,7 @@ const PopularCamps = () => {
         <div className="grid grid-cols-2 gap-8 md:col-span-3 lg:col-span-1">
           {campsData.map((camp, idx) => {
             if (idx === 2 || idx === 3) {
-              return <CardPopularCamps key={camp._id} camp={camp} />;
+              return <CampCard key={camp._id} camp={camp} />;
             }
           })}
         </div>
