@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const CarouselCard = ({ imgL, imgR, heading, subHeading }) => {
   return (
     <div>
-      <div className="h-[50svh] md:h-[60svh] lg:h-[50svh] flex flex-row relative">
+      <div className="h-[50svh] md:h-[60svh] lg:h-[50svh] flex flex-row relative font-roboto">
         {/* first block */}
         <div className="md:w-4/12 w-full">
           <img
@@ -17,7 +17,7 @@ const CarouselCard = ({ imgL, imgR, heading, subHeading }) => {
         {/* 2nd block */}
         <div className="md:w-4/12 w-full absolute md:relative h-full bg-primary bg-opacity-0 md:bg-opacity-100 flex justify-center items-end md:items-center">
           <div className=" text-center bg-primary py-6 px-4 text-white">
-            <h1 className="text-2xl lg:text-3xl font-bold">{heading}</h1>
+            <h1 className="text-2xl lg:text-3xl font-bold font-montserrat">{heading}</h1>
             <p className="lg:text-xl text-lg"> {subHeading}</p>
           </div>
         </div>

@@ -1,12 +1,12 @@
 import { Carousel } from "antd";
-import CarouselCard from "./CarouselCard";
 import { useQuery } from "@tanstack/react-query";
-import axiosPublic from "../../Utils/axiosPublic";
+import CarouselCard from "./CarouselCard";
+import axiosPublic from "../../../Utils/axiosPublic";
 
 const Banner = () => {
-  const onChange = (currentSlide) => {
-    console.log(currentSlide);
-  };
+  // const onChange = (currentSlide) => {
+    // console.log(currentSlide);
+  // };
 
   const { data: carouselCardData = [] } = useQuery({
     queryKey: ["carouselData"],
@@ -19,7 +19,7 @@ const Banner = () => {
   return (
     <div>
       <Carousel
-        afterChange={onChange}
+        // afterChange={onChange}
         dotPosition="bottom"
         autoplay
         infinite

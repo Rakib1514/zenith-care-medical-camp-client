@@ -11,7 +11,7 @@ const Navbar = () => {
 
 
   return (
-    <div className="bg-menu_bg">
+    <div className="bg-menu_bg ">
       <div className="navbar container mx-auto">
         <div className="navbar-start">
           <Link to="/" className="md:text-xl  md:font-semibold font-bold">Zenith Care</Link>

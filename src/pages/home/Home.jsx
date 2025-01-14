@@ -1,9 +1,12 @@
-import Banner from "./Banner";
+import Banner from "./Hero/Banner";
+import PopularCamps from "./populer-camps/PopularCamps";
 
 const Home = () => {
   return (
-    <div>
-      <Banner/>
+    <div className="min-h-svh">
+      <Banner />
+
+      <PopularCamps/>
     </div>
   );
 };

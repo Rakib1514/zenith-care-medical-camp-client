@@ -4,17 +4,15 @@ import Navbar from "../../components/Navbar";
 const MainLayout = () => {
   return (
     <div>
-      <header>
-        <nav>
-          <Navbar />
+      <header >
+        <nav className="fixed z-10 w-full">
+          <Navbar/>
         </nav>
       </header>
-      <main>
+      <main className="pt-16">
         <Outlet />
       </main>
-      <footer>
-        
-      </footer>
+      <footer></footer>
     </div>
   );
 };
