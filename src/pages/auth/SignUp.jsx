@@ -5,7 +5,7 @@ import { PlusOutlined } from "@ant-design/icons";
 import axiosPublic from "../../Utils/axiosPublic";
 import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const [photoURL, setPhotoURL] = useState("");
@@ -26,7 +26,7 @@ const SignUp = () => {
 
       // Success Flow
       await updateUser(values.name, photoURL);
-      navigate('/')
+      navigate("/");
       form.resetFields();
     } catch (error) {
       console.log(error.message);
@@ -64,6 +64,7 @@ const SignUp = () => {
       }
     } catch (error) {
       onError("Upload failed");
+      console.log(error);
     }
   };
 
@@ -195,6 +196,9 @@ const SignUp = () => {
           >
             Sign Up
           </Button>
+        </Form.Item>
+        <Form.Item label={null}>
+          <Link to={'/join-us/sign-in'}><p className="hover:text-primary underline">Already Have an account! Sign-in</p></Link>
         </Form.Item>
         <p className="text-red-700 text-xs">{message && message}</p>
       </Form>

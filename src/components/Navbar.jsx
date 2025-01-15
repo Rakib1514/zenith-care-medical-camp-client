@@ -2,9 +2,15 @@ import { Link, NavLink } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
 const Navbar = () => {
-  const { loading, user } = useAuth();
+  const { loading, user, userSignOut } = useAuth();
 
-  console.log(user);
+  const handleSignOut = async () => {
+    try {
+      await userSignOut();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const links = (
     <>
@@ -14,14 +20,21 @@ const Navbar = () => {
       <li>
         <NavLink to="/camps">All Camps</NavLink>
       </li>
-      <li>
-        <Link to="/join-us">Join Us</Link>
-      </li>
+
+      {user ? (
+        <></>
+      ) : (
+        <>
+          <li>
+            <Link to="/join-us">Join Us</Link>
+          </li>
+        </>
+      )}
     </>
   );
 
-  if(loading){
-    return <h2>Loading in navbar</h2>
+  if (loading) {
+    return <h2>Loading in navbar</h2>;
   }
 
   return (
@@ -36,7 +49,6 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
         <div className="navbar-end">
-
           {/* User Profile */}
           {user ? (
             <div className="dropdown dropdown-end">
@@ -66,7 +78,7 @@ const Navbar = () => {
                   <a>Settings</a>
                 </li>
                 <li>
-                  <a>Logout</a>
+                  <a onClick={handleSignOut}>Logout</a>
                 </li>
               </ul>
             </div>
