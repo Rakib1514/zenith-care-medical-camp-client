@@ -1,23 +1,38 @@
-
 import SectionHeading from "../../components/SectionHeading";
 import { Button, DatePicker, Form, Input, InputNumber, Upload } from "antd";
 const { TextArea } = Input;
 import { PlusOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import axiosPublic from "../../Utils/axiosPublic";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAuth from "../../hooks/useAuth";
 
 const AddCamp = () => {
-
+  const [submitLoading, setSubmitLoading] = useState(false);
   const [photoURL, setPhotoURL] = useState("");
-  
-  
+  const { user } = useAuth();
+  const [form] = Form.useForm();
+
+  const axiosSecure = useAxiosSecure();
+
   const onFinish = async (values) => {
-    
-    
+    setSubmitLoading(true);
+    const newCampData = {
+      ...values,
+      image: photoURL,
+      contributor: user.uid,
+      participantCount: 0,
+    };
 
+    const res = await axiosSecure.post("/camps", newCampData);
+    if (!res.data.insertedId) {
+      throw new Error("data post failed to server");
+    }
 
-    
-    
+    // Success flow
+    alert(`${values.name} camp added for the date ${values.time}`)
+    form.resetFields();
+    setSubmitLoading(false);
   };
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
@@ -60,6 +75,7 @@ const AddCamp = () => {
       />
       <div className="grid grid-cols-2 gap-6">
         <Form
+          form={form}
           name="addCamp"
           labelCol={{
             span: 8,
@@ -112,7 +128,7 @@ const AddCamp = () => {
               },
             ]}
           >
-            <Input />
+            <Input defaultValue={"Dr. "} />
           </Form.Item>
 
           <Form.Item
@@ -158,44 +174,44 @@ const AddCamp = () => {
           >
             <TextArea rows={4} />
           </Form.Item>
-          
+
           <Form.Item
-          label="Upload"
-          name={"image"}
-          rules={[
-            {
-              required: true,
-              message: "Please upload an image!",
-            },
-          ]}
-        >
-          <Upload
-            customRequest={handleImageUpload}
-            listType="picture-card"
-            maxCount={1}
+            label="Upload"
+            name={"image"}
+            rules={[
+              {
+                required: true,
+                message: "Please upload an image!",
+              },
+            ]}
           >
-            <button
-              style={{
-                border: 0,
-                background: "none",
-              }}
-              type="button"
+            <Upload
+              customRequest={handleImageUpload}
+              listType="picture-card"
+              maxCount={1}
             >
-              <PlusOutlined />
-              <div
+              <button
                 style={{
-                  marginTop: 8,
+                  border: 0,
+                  background: "none",
                 }}
+                type="button"
               >
-                Upload Your Image
-              </div>
-            </button>
-          </Upload>
-        </Form.Item>
+                <PlusOutlined />
+                <div
+                  style={{
+                    marginTop: 8,
+                  }}
+                >
+                  Upload Your Image
+                </div>
+              </button>
+            </Upload>
+          </Form.Item>
 
           <Form.Item label={null}>
-            <Button type="primary" htmlType="submit">
-              Submit
+            <Button type="primary" htmlType="submit" loading={submitLoading}>
+              Add Camp
             </Button>
           </Form.Item>
         </Form>
