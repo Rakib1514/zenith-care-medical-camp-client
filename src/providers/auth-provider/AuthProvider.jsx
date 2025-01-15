@@ -9,6 +9,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import auth from "../../firebase/firebase.config";
+import axiosPublic from "../../Utils/axiosPublic";
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -36,8 +37,22 @@ const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
+
+      if (!currentUser?.uid) {
+        const res = await axiosPublic.post("/jwt/sign-out");
+        console.log(res.data);
+        setLoading(false);
+        return;
+      }
+      const payload = { uid: currentUser.uid };
+      const res = await axiosPublic.post("/jwt/sign-in", payload, {
+        withCredentials: true,
+      });
+
+      console.log(res.data);
+
       setLoading(false);
     });
 

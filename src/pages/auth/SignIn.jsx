@@ -1,12 +1,15 @@
 import Lottie from "lottie-react";
 import { Button, Checkbox, Form, Input } from "antd";
 import animation from "../../assets/sign-in-animation.json";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
 const SignIn = () => {
   const { userSignIn, loading, setLoading } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/"
 
   const onFinish = async (values) => {
     console.log("Success:", values);
@@ -16,7 +19,7 @@ const SignIn = () => {
         throw new Error("user not returned, sign in failed");
       }
       // Success Flow
-      navigate("/")
+      navigate(from)
     } catch (error) {
       console.log(error);
       setLoading(false);

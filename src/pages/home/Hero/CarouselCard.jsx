@@ -15,8 +15,8 @@ const CarouselCard = ({ imgL, imgR, heading, subHeading }) => {
         </div>
 
         {/* 2nd block */}
-        <div className="md:w-4/12 w-full absolute md:relative h-full bg-primary bg-opacity-0 md:bg-opacity-100 flex justify-center items-end md:items-center">
-          <div className=" text-center bg-primary py-6 px-4 text-white">
+        <div className="md:w-4/12 w-full absolute md:relative h-full bg-gradient-to-br from-secondary to-g2 bg-opacity-0 md:bg-opacity-100 flex justify-center items-end md:items-center">
+          <div className=" text-center py-6 px-4 text-white">
             <h1 className="text-2xl lg:text-3xl font-bold font-montserrat">{heading}</h1>
             <p className="lg:text-xl text-lg"> {subHeading}</p>
           </div>

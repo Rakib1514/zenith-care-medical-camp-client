@@ -15,11 +15,11 @@ const CampCard = ({ camp }) => {
   } = camp;
 
   return (
-    <div className=" bg-menu_bg  flex flex-col relative rounded-br-[2.6rem] ">
+    <div className=" bg-menu_bg  flex flex-col relative rounded-br-[2.6rem] hover:scale-[1.007] transition-transform duration-300 ease-in-out border border-gray-300 shadow-md" >
       <div>
         <Badge.Ribbon
           text={`Participated: ${participantCount}`}
-          color="#009045"
+          color="#1B477B"
         >
           <div className="h-1/2 relative">
             <img
@@ -30,8 +30,8 @@ const CampCard = ({ camp }) => {
           </div>
         </Badge.Ribbon>
 
-        <div className="lg:px-6 px-2 pt-2 space-y-1">
-          <h2 className="md:text-xl font-bold">{name}</h2>
+        <div className="lg:px-6 px-2 pt-2 space-y-1 ">
+          <h2 className="md:text-xl font-bold text-secondary">{name}</h2>
           <p className="flex gap-1">
             <CiMoneyCheck1 className="text-xl" /> ${fees}
           </p>
@@ -51,16 +51,16 @@ const CampCard = ({ camp }) => {
       </div>
       <div className="flex justify-between h-full">
         <div className="flex items-center ">
-          <img
+          {/* <img
             src="https://www.shutterstock.com/image-photo/profile-photo-attractive-family-doc-600nw-1724693776.jpg"
             alt=""
             className="md:w-16 w-12 h-12 md:h-16 object-cover rounded-full p-1 bg-gray-400 bg-opacity-70 rounded-bl-none"
-          />
+          /> */}
 
-          <h4 className="font-semibold">{healthcareProfessional}</h4>
+          {/* <h4 className="font-semibold">{healthcareProfessional}</h4> */}
         </div>
         <div
-          className="h-16 w-16 rounded-full bg-slate-700"
+          className="h-16 w-16 rounded-full"
           style={{
             boxShadow: "0px 0px 0px 16px white",
           }}

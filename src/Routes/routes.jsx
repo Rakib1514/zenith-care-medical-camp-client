@@ -6,6 +6,9 @@ import CampDetails from "../pages/camp-details/CampDetails";
 import AuthLayout from "../layouts/auth-layout/AuthLayout";
 import SignIn from "../pages/auth/SignIn";
 import SignUp from "../pages/auth/SignUp";
+import DashboardLayout from "../layouts/dashboard-layout/DashboardLayout";
+import AddCamp from "../pages/add-camp/AddCamp";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +46,16 @@ const router = createBrowserRouter([
         element: <SignUp />,
       },
     ],
+  },
+  {
+    path: "dashboard",
+    element: <PrivateRoute><DashboardLayout /></PrivateRoute>,
+    children: [
+      {
+        path: 'add-camp',
+        element: <AddCamp/>
+      }
+    ]
   },
 ]);
 

@@ -26,6 +26,22 @@ const SignUp = () => {
 
       // Success Flow
       await updateUser(values.name, photoURL);
+
+      const userInfo = {
+        name: values.name,
+        image: photoURL,
+        uid: result.user.uid,
+        email: result.user.email,
+      };
+
+      console.log("userInfo for db", userInfo);
+
+      const res = await axiosPublic.post("/users", userInfo);
+
+      if(!res.data.insertedId){
+        console.log("failed to post userInfo to DB");
+      }
+      
       navigate("/");
       form.resetFields();
     } catch (error) {
@@ -198,7 +214,11 @@ const SignUp = () => {
           </Button>
         </Form.Item>
         <Form.Item label={null}>
-          <Link to={'/join-us/sign-in'}><p className="hover:text-primary underline">Already Have an account! Sign-in</p></Link>
+          <Link to={"/join-us/sign-in"}>
+            <p className="hover:text-primary underline">
+              Already Have an account! Sign-in
+            </p>
+          </Link>
         </Form.Item>
         <p className="text-red-700 text-xs">{message && message}</p>
       </Form>

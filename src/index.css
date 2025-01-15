@@ -6,5 +6,10 @@
 
 
 .campCardContainer .campCardBtn{
-  @apply w-full h-full flex justify-center items-center bg-gray-300 rounded-full hover:scale-110 border border-gray-500 font-bold text-black hover:bg-primary hover:text-white transition-all duration-200 ease-in-out btn
+  @apply w-full h-full flex justify-center items-center bg-primary rounded-full hover:scale-105 font-bold text-white hover:bg-secondary hover:text-white transition-all duration-200 ease-in-out btn
+}
+
+
+.active{
+  @apply bg-secondary
 }
