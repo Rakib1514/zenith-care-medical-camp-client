@@ -1,5 +1,13 @@
 import PropTypes from "prop-types";
-import { Button, Form, Input, InputNumber, Modal, Select } from "antd";
+import {
+  Button,
+  DatePicker,
+  Form,
+  Input,
+  InputNumber,
+  Modal,
+  Select,
+} from "antd";
 import { CiUser } from "react-icons/ci";
 import { BsGenderAmbiguous, BsTelephone } from "react-icons/bs";
 import {
@@ -10,25 +18,69 @@ import {
 } from "react-icons/fa6";
 import useAuth from "../../hooks/useAuth";
 import { MdEmail } from "react-icons/md";
+import dayjs from "dayjs";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useState } from "react";
 
 const RegisterCampModal = ({ setIsModalOpen, isModalOpen, camp }) => {
+  const [regBtnLoading, setRegBtnLoading] = useState(false);
   const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
+  const [form] = Form.useForm();
 
   const {
-    image,
     name: campName,
     location,
-    participantCount,
     healthcareProfessional,
     fees,
     timeFrom,
     timeTo,
-    description,
+    _id,
   } = camp;
 
-  const handleRegisterCamp = (values) => {
-    console.log(values);
+  const handleRegisterCamp = async (values) => {
+    setRegBtnLoading(true);
+    const campRegInfo = {
+      ...values,
+      campId: _id,
+      campName: campName,
+      campFee: fees,
+      campLocation: location,
+      campLeadBy: healthcareProfessional,
+      participantName: user?.displayName,
+      participantEmail: user?.email,
+      participantUid: user?.uid,
+    };
+
+    try {
+      const res = await axiosSecure.post("/reg-camps", campRegInfo);
+
+      if (!res.data?.insertedId) {
+        throw new Error("inserted Id not returned");
+      }
+
+      // success flow
+      alert(`Registration success. Reg Id: ${(await res).data.insertedId}`);
+      form.resetFields();
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setRegBtnLoading(false);
+    }
   };
+
+  const disabledDate = (current) => {
+    const today = dayjs().endOf("day");
+    if (current && current.isBefore(today)) {
+      return true;
+    }
+    if (current && (current.isBefore(timeFrom) || current.isAfter(timeTo))) {
+      return true;
+    }
+  };
+
+  const startDate = dayjs(timeFrom).format("DD-MMM-YYYY");
+  const endDate = dayjs(timeTo).format("DD-MMM-YYYY");
 
   return (
     <Modal
@@ -38,6 +90,9 @@ const RegisterCampModal = ({ setIsModalOpen, isModalOpen, camp }) => {
       footer={false}
     >
       <div className="my-4">
+        <p className="flex items-center gap-1">
+          Camp Available From {startDate} to {endDate}
+        </p>
         <p className="flex items-center gap-1">
           <span>
             <FaLocationDot />
@@ -56,6 +111,7 @@ const RegisterCampModal = ({ setIsModalOpen, isModalOpen, camp }) => {
           </span>
           <span>${fees}</span>
         </p>
+
         <div className="">
           <p>Participant:</p>
           <p className="flex items-center gap-1">
@@ -73,6 +129,7 @@ const RegisterCampModal = ({ setIsModalOpen, isModalOpen, camp }) => {
         </div>
       </div>
       <Form
+        form={form}
         name="login"
         initialValues={{
           remember: true,
@@ -84,7 +141,6 @@ const RegisterCampModal = ({ setIsModalOpen, isModalOpen, camp }) => {
       >
         <Form.Item
           name="participantAge"
-          
           rules={[
             {
               required: true,
@@ -92,9 +148,13 @@ const RegisterCampModal = ({ setIsModalOpen, isModalOpen, camp }) => {
             },
           ]}
         >
-          <InputNumber style={{
-            width: "100%"
-          }} prefix={<CiUser />} placeholder="Your Age" />
+          <InputNumber
+            style={{
+              width: "100%",
+            }}
+            prefix={<CiUser />}
+            placeholder="Your Age"
+          />
         </Form.Item>
 
         <Form.Item
@@ -155,8 +215,25 @@ const RegisterCampModal = ({ setIsModalOpen, isModalOpen, camp }) => {
           />
         </Form.Item>
 
+        <Form.Item
+          name="joinDate"
+          rules={[
+            {
+              required: true,
+              message: "Please select a date for join",
+            },
+          ]}
+        >
+          <DatePicker format="YYYY-MM-DD" disabledDate={disabledDate} />
+        </Form.Item>
         <Form.Item>
-          <Button block type="primary" htmlType="submit">
+          <p>
+            Camp Available From {startDate} to {endDate}
+          </p>
+        </Form.Item>
+
+        <Form.Item>
+          <Button block type="primary" htmlType="submit" loading={regBtnLoading}>
             Register
           </Button>
         </Form.Item>

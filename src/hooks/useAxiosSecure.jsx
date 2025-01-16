@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 // https://zenith-server.vercel.app
 // http://localhost:5000
 const axiosSecure = axios.create({
-  baseURL: "https://zenith-server.vercel.app",
+  baseURL: "http://localhost:5000",
 });
 
 const useAxiosSecure = () => {
