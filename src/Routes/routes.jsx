@@ -11,6 +11,7 @@ import AddCamp from "../pages/add-camp/AddCamp";
 import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
 import RegisteredCamps from "../pages/registered-camps/RegisteredCamps";
+import Payment from "../pages/Payments/Payment";
 
 const router = createBrowserRouter([
   {
@@ -63,6 +64,10 @@ const router = createBrowserRouter([
       {
         path: 'registered-camps/:uid',
         element: <RegisteredCamps/>
+      },
+      {
+        path: 'payment/:id',
+        element: <Payment/>
       }
     ]
   },

@@ -15,13 +15,14 @@ const SignIn = () => {
     try {
       const result = await userSignIn(values.email, values.password);
       if (!result.user) {
+        setLoading(false);
         throw new Error("user not returned, sign in failed");
       }
       // Success Flow
       navigate(from);
     } catch (error) {
-      console.log(error);
       setLoading(false);
+      console.log(error);
     }
   };
   const onFinishFailed = (errorInfo) => {

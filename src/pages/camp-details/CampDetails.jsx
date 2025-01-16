@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { ScrollRestoration, useParams } from "react-router-dom";
+import { ScrollRestoration, useNavigate, useParams } from "react-router-dom";
 import axiosPublic from "../../Utils/axiosPublic";
 import SectionHeading from "../../components/SectionHeading";
 import { Badge } from "antd";
@@ -9,11 +9,14 @@ import dayjs from "dayjs";
 import { MdOutlineDescription } from "react-icons/md";
 import { useState } from "react";
 import RegisterCampModal from "./RegisterCampModal";
-
-// TODO: dynamic user name After Hello
+import useAuth from "../../hooks/useAuth";
 
 const CampDetails = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
   const { id } = useParams();
   const { data: camp = {}, isLoading } = useQuery({
     queryKey: ["campDetails", id],
@@ -37,6 +40,15 @@ const CampDetails = () => {
 
   const formattedStartDate = dayjs(timeFrom).format("DD-MMM-YYYY");
   const formattedEndDate = dayjs(timeTo).format("DD-MMM-YYYY");
+
+  const handleJoin = () => {
+    if (!user) {
+      navigate("/join-us/sign-in");
+      return;
+    }
+
+    setIsModalOpen(true);
+  };
 
   if (isLoading) {
     return <h2>Loading in details page....</h2>;
@@ -63,7 +75,7 @@ const CampDetails = () => {
 
           <div>
             <div className="mb-8">
-              <p>Hello, {""}</p>
+              <p>Hello, {user?.displayName || ''}</p>
               <p>
                 <span className="font-semibold">{name}</span> is led by{" "}
                 <span className="italic font-semibold">
@@ -73,7 +85,7 @@ const CampDetails = () => {
                 your health and well-being.
               </p>
               <button
-                onClick={() => setIsModalOpen(true)}
+                onClick={handleJoin}
                 className="btn btn-outline"
               >
                 Join Camp
