@@ -7,12 +7,14 @@ import { FaLocationDot } from "react-icons/fa6";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import dayjs from "dayjs";
 import { MdOutlineDescription } from "react-icons/md";
+import { useState } from "react";
+import RegisterCampModal from "./RegisterCampModal";
 
 // TODO: dynamic user name After Hello
 
 const CampDetails = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { id } = useParams();
-
   const { data: camp = {}, isLoading } = useQuery({
     queryKey: ["campDetails", id],
     queryFn: async () => {
@@ -36,8 +38,8 @@ const CampDetails = () => {
   const formattedStartDate = dayjs(timeFrom).format("DD-MMM-YYYY");
   const formattedEndDate = dayjs(timeTo).format("DD-MMM-YYYY");
 
-  if(isLoading){
-    return <h2>Loading in details page....</h2>
+  if (isLoading) {
+    return <h2>Loading in details page....</h2>;
   }
 
   return (
@@ -70,7 +72,12 @@ const CampDetails = () => {
                 , offering expert care and essential medical services to ensure
                 your health and well-being.
               </p>
-              <button className="btn btn-outline">Join Camp</button>
+              <button
+                onClick={() => setIsModalOpen(true)}
+                className="btn btn-outline"
+              >
+                Join Camp
+              </button>
             </div>
             <div className="space-y-2">
               <p className="flex items-center gap-1">
@@ -100,6 +107,11 @@ const CampDetails = () => {
           </div>
         </div>
       </div>
+      <RegisterCampModal
+        setIsModalOpen={setIsModalOpen}
+        isModalOpen={isModalOpen}
+        camp={camp}
+      />
     </div>
   );
 };
