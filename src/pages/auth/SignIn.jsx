@@ -12,7 +12,6 @@ const SignIn = () => {
   const from = location.state?.from?.pathname || "/";
 
   const onFinish = async (values) => {
-    console.log("Success:", values);
     try {
       const result = await userSignIn(values.email, values.password);
       if (!result.user) {

@@ -36,8 +36,6 @@ const SignUp = () => {
         email: result.user.email,
       };
 
-      console.log("userInfo for db", userInfo);
-
       const res = await axiosSecure.post("/users", userInfo);
 
       if (!res.data.insertedId) {

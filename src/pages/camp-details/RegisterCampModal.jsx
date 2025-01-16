@@ -50,6 +50,8 @@ const RegisterCampModal = ({ setIsModalOpen, isModalOpen, camp }) => {
       participantName: user?.displayName,
       participantEmail: user?.email,
       participantUid: user?.uid,
+      paymentStatus: false,
+      confirmationStatus: false,
     };
 
     try {
@@ -62,6 +64,7 @@ const RegisterCampModal = ({ setIsModalOpen, isModalOpen, camp }) => {
       // success flow
       alert(`Registration success. Reg Id: ${(await res).data.insertedId}`);
       form.resetFields();
+      setIsModalOpen(false);
     } catch (error) {
       console.log(error);
     } finally {
@@ -185,7 +188,7 @@ const RegisterCampModal = ({ setIsModalOpen, isModalOpen, camp }) => {
           <Select
             prefix={<BsGenderAmbiguous />}
             placeholder="Gender"
-            defaultValue={null}
+            initialValues={null}
             options={[
               {
                 value: "male",
@@ -233,7 +236,12 @@ const RegisterCampModal = ({ setIsModalOpen, isModalOpen, camp }) => {
         </Form.Item>
 
         <Form.Item>
-          <Button block type="primary" htmlType="submit" loading={regBtnLoading}>
+          <Button
+            block
+            type="primary"
+            htmlType="submit"
+            loading={regBtnLoading}
+          >
             Register
           </Button>
         </Form.Item>

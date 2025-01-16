@@ -5,8 +5,8 @@ import useAdmin from "../../hooks/useAdmin";
 import DashboardNav from "./DashboardNav";
 
 const DashboardLayout = () => {
-  const { isAdmin, isLoading: isLoadingAdmin } = useAdmin();
-  console.log(isAdmin);
+  const { isLoading: isLoadingAdmin } = useAdmin();
+  
 
   const [open, setOpen] = useState(false);
   const showDrawer = () => {

@@ -1,13 +1,15 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import useAdmin from "../../hooks/useAdmin";
 import PropTypes from "prop-types";
+import useAuth from "../../hooks/useAuth";
 
 const DashboardNav = ({ setOpen, open }) => {
   const { isAdmin } = useAdmin();
+  const { user } = useAuth();
 
   return (
     <>
-      {isAdmin ? (
+      {isAdmin && user ? (
         <>
           <li>
             <NavLink to={"/profile"}>Profile</NavLink>
@@ -22,8 +24,25 @@ const DashboardNav = ({ setOpen, open }) => {
             <NavLink to={"/manage-registered-camps"}>Manage Reg Camps</NavLink>
           </li>
         </>
+      ) : user && !isAdmin ? (
+        <>
+          <li>
+            <NavLink to={"/"}>Analytics</NavLink>
+          </li>
+          <li>
+            <NavLink to={"/"}>Profile</NavLink>
+          </li>
+          <li>
+            <NavLink to={`/dashboard/registered-camps/${user?.uid}`}>
+              Registered Camps
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to={"/"}>Payment History</NavLink>
+          </li>
+        </>
       ) : (
-        <>Working on it</>
+        <Link to={"/join-us/sign-in"}>Sign in</Link>
       )}
 
       <div className="divider my-6 "> </div>
