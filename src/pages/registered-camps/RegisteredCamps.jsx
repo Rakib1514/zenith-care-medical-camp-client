@@ -10,6 +10,8 @@ import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import { useState } from "react";
+import SectionHeading from "../../components/SectionHeading";
+import dayjs from "dayjs";
 
 const RegisteredCamps = () => {
   const [page, setPage] = useState(0);
@@ -39,53 +41,61 @@ const RegisteredCamps = () => {
   }
 
   return (
-    <Paper sx={{ width: "100%", overflow: "hidden" }}>
-      <TableContainer sx={{ maxHeight: 440 }}>
-        <Table stickyHeader aria-label="sticky table">
-          <TableHead>
-            <TableRow>
-              <TableCell>Camp Name</TableCell>
-              <TableCell align="left">Fee</TableCell>
-              <TableCell align="left">Participant Name</TableCell>
-              <TableCell align="left">Payment Status</TableCell>
-              <TableCell align="left">Confirmation Status</TableCell>
-              <TableCell align="left">Cancel</TableCell>
-              <TableCell align="left">FeedBack</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {myRegCampsData
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
-                return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row._id}>
-                    <TableCell align="left">{row.campName}</TableCell>
-                    <TableCell align="left">${row.campFee}</TableCell>
-                    <TableCell align="left">{row.participantName}</TableCell>
-                    <TableCell align="left">
-                      {row.paymentStatus ? "Paid" : "Pay"}
-                    </TableCell>
-                    <TableCell align="left">
-                      {row.confirmationStatus ? "Confirmed" : "Panding"}
-                    </TableCell>
-                    <TableCell align="left">Cancel</TableCell>
-                    <TableCell align="left">FeedBack</TableCell>
-                  </TableRow>
-                );
-              })}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[5, 10, 20]}
-        component="div"
-        count={myRegCampsData.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-      />
-    </Paper>
+    <>
+      <div>
+        <SectionHeading heading="Registered camps" subHeading="Take a care of your health"/>
+      </div>
+      <Paper sx={{ width: "100%", overflow: "hidden" }}>
+        <TableContainer sx={{ maxHeight: 440 }}>
+          <Table stickyHeader aria-label="sticky table">
+            <TableHead>
+              <TableRow>
+                <TableCell>Camp Name</TableCell>
+                <TableCell align="left">Fee</TableCell>
+                <TableCell align="left">Join Date</TableCell>
+                <TableCell align="left">Payment Status</TableCell>
+                <TableCell align="left">Confirmation Status</TableCell>
+                <TableCell align="left">Cancel</TableCell>
+                <TableCell align="left">FeedBack</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {myRegCampsData
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map((row) => {
+
+                  const joinDate = dayjs(row.joinDate).format("DD-MMM-YY")
+                  
+                  return (
+                    <TableRow hover role="checkbox" tabIndex={-1} key={row._id}>
+                      <TableCell align="left">{row.campName}</TableCell>
+                      <TableCell align="left">${row.campFee}</TableCell>
+                      <TableCell align="left">{joinDate}</TableCell>
+                      <TableCell align="left">
+                        {row.paymentStatus ? "Paid" : "Pay"}
+                      </TableCell>
+                      <TableCell align="left">
+                        {row.confirmationStatus ? "Confirmed" : "Panding"}
+                      </TableCell>
+                      <TableCell align="left">Cancel</TableCell>
+                      <TableCell align="left">FeedBack</TableCell>
+                    </TableRow>
+                  );
+                })}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <TablePagination
+          rowsPerPageOptions={[5, 10, 20, 50]}
+          component="div"
+          count={myRegCampsData.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />
+      </Paper>
+    </>
   );
 };
 
