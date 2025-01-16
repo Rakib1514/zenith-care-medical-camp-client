@@ -30,7 +30,7 @@ const AddCamp = () => {
     }
 
     // Success flow
-    alert(`${values.name} camp added for the date ${values.time}`)
+    alert(`${values.name} camp added for the date ${values.timeFrom}`)
     form.resetFields();
     setSubmitLoading(false);
   };
@@ -73,7 +73,7 @@ const AddCamp = () => {
         heading="Add Upcoming Camp"
         subHeading="Better Treatment for everyone"
       />
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid md:grid-cols-2 gap-6">
         <Form
           form={form}
           name="addCamp"
@@ -145,14 +145,24 @@ const AddCamp = () => {
           </Form.Item>
 
           <Form.Item
-            label="Date"
-            name="time"
+            label="Camp Start Date"
+            name="timeFrom"
             rules={[
               { required: true, message: "Please enter date for the camp!" },
             ]}
           >
             <DatePicker />
           </Form.Item>
+          <Form.Item
+            label="Camp End Date"
+            name="timeTo"
+            rules={[
+              { required: true, message: "Please enter date for the camp!" },
+            ]}
+          >
+            <DatePicker />
+          </Form.Item>
+
           <Form.Item
             label="Description"
             name={"description"}

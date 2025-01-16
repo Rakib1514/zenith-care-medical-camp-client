@@ -5,7 +5,7 @@ import useAdmin from "../../hooks/useAdmin";
 import DashboardNav from "./DashboardNav";
 
 const DashboardLayout = () => {
-  const { isAdmin } = useAdmin();
+  const { isAdmin, isLoading: isLoadingAdmin } = useAdmin();
   console.log(isAdmin);
 
   const [open, setOpen] = useState(false);
@@ -15,6 +15,10 @@ const DashboardLayout = () => {
   const onClose = () => {
     setOpen(false);
   };
+
+  if(isLoadingAdmin){
+    return <h2>loading for is Admin</h2>
+  }
 
   return (
     <div className="px-4 md:px-0">
@@ -35,7 +39,7 @@ const DashboardLayout = () => {
       >
         <div className="text-white font-semibold">
           <ul className="uppercase menu ">
-            <DashboardNav />
+            <DashboardNav setOpen={setOpen} open={open}/>
           </ul>
         </div>
       </Drawer>

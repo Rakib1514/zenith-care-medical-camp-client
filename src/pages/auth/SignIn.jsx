@@ -9,7 +9,7 @@ const SignIn = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const from = location.state?.from?.pathname || "/"
+  const from = location.state?.from?.pathname || "/";
 
   const onFinish = async (values) => {
     console.log("Success:", values);
@@ -19,7 +19,7 @@ const SignIn = () => {
         throw new Error("user not returned, sign in failed");
       }
       // Success Flow
-      navigate(from)
+      navigate(from);
     } catch (error) {
       console.log(error);
       setLoading(false);
@@ -27,6 +27,7 @@ const SignIn = () => {
   };
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
+    setLoading(false);
   };
 
   return (

@@ -1,6 +1,7 @@
 import { Badge } from "antd";
 import PropTypes from "prop-types";
 import { CiLocationOn, CiMoneyCheck1 } from "react-icons/ci";
+import { GoArrowUpLeft } from "react-icons/go";
 import { Link } from "react-router-dom";
 
 const CampCard = ({ camp }) => {
@@ -11,11 +12,11 @@ const CampCard = ({ camp }) => {
     participantCount,
     healthcareProfessional,
     fees,
-    _id
+    _id,
   } = camp;
 
   return (
-    <div className=" bg-menu_bg  flex flex-col relative rounded-br-[2.6rem] hover:scale-[1.007] transition-transform duration-300 ease-in-out border border-gray-300 shadow-md" >
+    <div className=" bg-menu_bg  flex flex-col relative rounded-br-[2.6rem] hover:scale-[1.007] transition-transform duration-300 ease-in-out border border-gray-300 shadow-md">
       <div>
         <Badge.Ribbon
           text={`Participated: ${participantCount}`}
@@ -50,15 +51,7 @@ const CampCard = ({ camp }) => {
         ></div>
       </div>
       <div className="flex justify-between h-full">
-        <div className="flex items-center ">
-          {/* <img
-            src="https://www.shutterstock.com/image-photo/profile-photo-attractive-family-doc-600nw-1724693776.jpg"
-            alt=""
-            className="md:w-16 w-12 h-12 md:h-16 object-cover rounded-full p-1 bg-gray-400 bg-opacity-70 rounded-bl-none"
-          /> */}
-
-          {/* <h4 className="font-semibold">{healthcareProfessional}</h4> */}
-        </div>
+        <div className="flex items-center "></div>
         <div
           className="h-16 w-16 rounded-full"
           style={{
@@ -66,7 +59,7 @@ const CampCard = ({ camp }) => {
           }}
         >
           <Link to={`/camp-details/${_id}`} className="campCardBtn">
-            Join
+          <GoArrowUpLeft className="text-3xl"/>
           </Link>
         </div>
       </div>

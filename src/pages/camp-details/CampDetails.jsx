@@ -3,13 +3,17 @@ import { ScrollRestoration, useParams } from "react-router-dom";
 import axiosPublic from "../../Utils/axiosPublic";
 import SectionHeading from "../../components/SectionHeading";
 import { Badge } from "antd";
+import { FaLocationDot } from "react-icons/fa6";
+import { FaRegCalendarAlt } from "react-icons/fa";
+import dayjs from "dayjs";
+import { MdOutlineDescription } from "react-icons/md";
 
 // TODO: dynamic user name After Hello
 
 const CampDetails = () => {
   const { id } = useParams();
 
-  const { data: camp = {} } = useQuery({
+  const { data: camp = {}, isLoading } = useQuery({
     queryKey: ["campDetails", id],
     queryFn: async () => {
       const res = await axiosPublic(`/camps/${id}`);
@@ -24,22 +28,34 @@ const CampDetails = () => {
     participantCount,
     healthcareProfessional,
     fees,
+    timeFrom,
+    timeTo,
     description,
-    _id,
   } = camp;
+
+  const formattedStartDate = dayjs(timeFrom).format("DD-MMM-YYYY");
+  const formattedEndDate = dayjs(timeTo).format("DD-MMM-YYYY");
+
+  if(isLoading){
+    return <h2>Loading in details page....</h2>
+  }
 
   return (
     <div>
       <div className="container mx-auto min-h-svh font-roboto">
         <ScrollRestoration />
         <SectionHeading heading={name} subHeading="Join Here" />
-        <div className="grid grid-cols-2 gap-6 bg-menu_bg p-6">
+        <div className="grid md:grid-cols-2 grid-cols-1 gap-6 bg-menu_bg p-6">
           <Badge.Ribbon
             text={`Participated: ${participantCount}`}
             color="#009045"
           >
-            <div>
-              <img src={image} alt={name + " " + healthcareProfessional} />
+            <div className="h-full w-full">
+              <img
+                src={image}
+                alt={name + " " + healthcareProfessional}
+                className="h-full w-full object-cover"
+              />
             </div>
           </Badge.Ribbon>
 
@@ -54,13 +70,33 @@ const CampDetails = () => {
                 , offering expert care and essential medical services to ensure
                 your health and well-being.
               </p>
+              <button className="btn btn-outline">Join Camp</button>
             </div>
-            <p>
-              <span className="font-bold">Location:</span> {location}
-            </p>
-            <p>
-              <span className="font-bold">Fee:</span> ${fees}
-            </p>
+            <div className="space-y-2">
+              <p className="flex items-center gap-1">
+                <span className="font-bold">
+                  <FaLocationDot className="text-xl" />
+                </span>{" "}
+                <span>{location}</span>
+              </p>
+              <p className="flex items-center gap-1">
+                <span className="font-bold">
+                  <FaRegCalendarAlt className="text-xl" />
+                </span>
+                <span>{formattedStartDate}</span>
+                <span>to</span>
+                <span>{formattedEndDate}</span>
+              </p>
+              <p>
+                <span className="font-bold">Fee:</span> ${fees}
+              </p>
+              <div className="break-words">
+                <p>
+                  <MdOutlineDescription className="text-xl" />
+                </p>
+                <p>{description}</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

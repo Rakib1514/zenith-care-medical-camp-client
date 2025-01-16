@@ -40,18 +40,19 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
 
-      if (!currentUser?.uid) {
-        const res = await axiosPublic.post("/jwt/sign-out");
-        console.log(res.data);
+      if (!currentUser) {
+        localStorage.removeItem("access-token");
         setLoading(false);
         return;
       }
-      const payload = { uid: currentUser.uid };
-      const res = await axiosPublic.post("/jwt/sign-in", payload, {
-        withCredentials: true,
-      });
 
-      console.log(res.data);
+      const payload = { uid: currentUser.uid };
+      const res = await axiosPublic.post("/jwt/sign-in", payload);
+
+      if (res.data.token) {
+        localStorage.setItem("access-token", res.data.token);
+        console.log("set to local storage");
+      }
 
       setLoading(false);
     });

@@ -1,7 +1,8 @@
 import { NavLink } from "react-router-dom";
 import useAdmin from "../../hooks/useAdmin";
+import PropTypes from "prop-types";
 
-const DashboardNav = () => {
+const DashboardNav = ({ setOpen, open }) => {
   const { isAdmin } = useAdmin();
 
   return (
@@ -11,7 +12,7 @@ const DashboardNav = () => {
           <li>
             <NavLink to={"/profile"}>Profile</NavLink>
           </li>
-          <li>
+          <li onClick={() => setOpen(!open)}>
             <NavLink to={"/dashboard/add-camp"}>Add a Camp</NavLink>
           </li>
           <li>
@@ -32,6 +33,11 @@ const DashboardNav = () => {
       </li>
     </>
   );
+};
+
+DashboardNav.propTypes = {
+  setOpen: PropTypes.func,
+  open: PropTypes.bool,
 };
 
 export default DashboardNav;

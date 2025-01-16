@@ -6,6 +6,7 @@ import axiosPublic from "../../Utils/axiosPublic";
 import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const SignUp = () => {
   const [photoURL, setPhotoURL] = useState("");
@@ -14,6 +15,7 @@ const SignUp = () => {
   const navigate = useNavigate();
 
   const { userSignUp, updateUser, loading, setLoading } = useAuth();
+  const axiosSecure = useAxiosSecure();
 
   const onFinish = async (values) => {
     setMessage("");
@@ -36,12 +38,12 @@ const SignUp = () => {
 
       console.log("userInfo for db", userInfo);
 
-      const res = await axiosPublic.post("/users", userInfo);
+      const res = await axiosSecure.post("/users", userInfo);
 
-      if(!res.data.insertedId){
+      if (!res.data.insertedId) {
         console.log("failed to post userInfo to DB");
       }
-      
+
       navigate("/");
       form.resetFields();
     } catch (error) {

@@ -4,9 +4,7 @@ import CarouselCard from "./CarouselCard";
 import axiosPublic from "../../../Utils/axiosPublic";
 
 const Banner = () => {
-  // const onChange = (currentSlide) => {
-    // console.log(currentSlide);
-  // };
+
 
   const { data: carouselCardData = [] } = useQuery({
     queryKey: ["carouselData"],
@@ -19,7 +17,7 @@ const Banner = () => {
   return (
     <div>
       <Carousel
-        // afterChange={onChange}
+        
         dotPosition="bottom"
         autoplay
         infinite
@@ -42,12 +40,3 @@ const Banner = () => {
 
 export default Banner;
 
-{
-  /* <div className="h-[60svh]">
-<img
-  src="https://i.ibb.co.com/s18MBwT/Zenith-banner-2.jpg.jpg"
-  alt=""
-  className="w-full"
-/>
-</div> */
-}
