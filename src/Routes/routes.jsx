@@ -11,7 +11,8 @@ import AddCamp from "../pages/add-camp/AddCamp";
 import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
 import RegisteredCamps from "../pages/registered-camps/RegisteredCamps";
-import Payment from "../pages/Payments/Payment";
+import Payment from "../pages/Payment/Payment";
+import PaymentHistory from "../pages/payment-history/PaymentHistory";
 
 const router = createBrowserRouter([
   {
@@ -52,24 +53,36 @@ const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <PrivateRoute><DashboardLayout /></PrivateRoute>,
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
     children: [
       // Admin Routes
       {
-        path: 'add-camp',
-        element:  <AdminRoute><AddCamp/></AdminRoute>
+        path: "add-camp",
+        element: (
+          <AdminRoute>
+            <AddCamp />
+          </AdminRoute>
+        ),
       },
 
       // Participant Routes
       {
-        path: 'registered-camps/:uid',
-        element: <RegisteredCamps/>
+        path: "registered-camps/:uid",
+        element: <RegisteredCamps />,
       },
       {
-        path: 'payment/:id',
-        element: <Payment/>
-      }
-    ]
+        path: "payment/:id",
+        element: <Payment />,
+      },
+      {
+        path: "transactions/:uid",
+        element: <PaymentHistory />,
+      },
+    ],
   },
 ]);
 

@@ -38,7 +38,7 @@ const DashboardNav = ({ setOpen, open }) => {
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/"}>Payment History</NavLink>
+            <NavLink to={`/dashboard/transactions/${user.uid}`}>Payment History</NavLink>
           </li>
         </>
       ) : (

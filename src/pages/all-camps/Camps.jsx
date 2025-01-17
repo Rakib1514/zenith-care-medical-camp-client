@@ -14,7 +14,7 @@ const Camps = () => {
       <div className="container mx-auto px-6">
         <div>
           <SectionHeading
-            subHeading="Find the perfect adventure, retreat, or learning experience—tailored just for you."
+            subHeading="Find the Perfect Camp for Your Health and Wellness"
             heading="Explore Our Camps"
           />
         </div>

@@ -1,7 +1,11 @@
 import { Badge } from "antd";
+import dayjs from "dayjs";
 import PropTypes from "prop-types";
 import { CiLocationOn, CiMoneyCheck1 } from "react-icons/ci";
+import { FaRegCalendarTimes } from "react-icons/fa";
+import { FaUserDoctor } from "react-icons/fa6";
 import { GoArrowUpLeft } from "react-icons/go";
+import { MdEventAvailable } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 const CampCard = ({ camp }) => {
@@ -10,10 +14,16 @@ const CampCard = ({ camp }) => {
     name,
     location,
     participantCount,
-    healthcareProfessional,
+    healthcareProfessional: drName,
+    timeFrom,
+    timeTo,
     fees,
     _id,
   } = camp;
+
+  const startDate = dayjs(timeFrom).format("DD-MMM-YY")
+  const endDate = dayjs(timeTo).format("DD-MMM-YY")
+  
 
   return (
     <div className=" bg-menu_bg  flex flex-col relative rounded-br-[2.6rem] hover:scale-[1.007] transition-transform duration-300 ease-in-out border border-gray-300 shadow-md">
@@ -33,12 +43,23 @@ const CampCard = ({ camp }) => {
 
         <div className="lg:px-6 px-2 pt-2 space-y-1 ">
           <h2 className="md:text-xl font-bold text-secondary">{name}</h2>
-          <p className="flex gap-1">
+          <p className="flex gap-1 items-center">
+            <FaUserDoctor  className="text-xl" /> {drName}
+          </p>
+          <p className="flex gap-1 items-center">
             <CiMoneyCheck1 className="text-xl" /> ${fees}
           </p>
           <p className="flex gap-1 items-center">
             <CiLocationOn className="text-xl" />
             {location}
+          </p>
+          <p className="flex gap-1 items-center">
+            <MdEventAvailable  className="text-xl" />
+            From {startDate} 
+          </p>
+          <p className="flex gap-1 items-center">
+            <FaRegCalendarTimes   className="text-xl" />
+            To {endDate}
           </p>
         </div>
       </div>

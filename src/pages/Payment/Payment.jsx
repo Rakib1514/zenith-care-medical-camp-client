@@ -13,7 +13,7 @@ const Payment = () => {
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
   
-  const { data: camp } = useQuery({
+  const { data: camp, isLoading } = useQuery({
     queryKey: ["paymentData", id],
     queryFn: async () => {
       const res = await axiosSecure.get(`/reg-camp/${id}`);
@@ -21,12 +21,23 @@ const Payment = () => {
     },
   });
 
+  if(isLoading){
+    return <h2>Loading in pAyment .......</h2>
+  }
+
   return (
     <div>
-      <SectionHeading heading="Payment here" subHeading="Taka dao taratari" />
+      <SectionHeading heading="Secure Your Spot with Ease" subHeading="Complete Your Payment Seamlessly Using Your Card" />
+
+      <div className="max-w-xl mx-auto mb-6 ">
+        <h3 className="font-semibold">{camp.campName}</h3>
+        <p>{camp.campLeadBy}</p>
+        <p>Fee: <span className="font-bold">${camp.campFee}</span></p>
+      </div>
+      
       <div>
         <Elements stripe={stripePromise}>
-          <CheckoutForm price={camp?.campFee}/>
+          <CheckoutForm camp={camp} />
         </Elements>
       </div>
     </div>

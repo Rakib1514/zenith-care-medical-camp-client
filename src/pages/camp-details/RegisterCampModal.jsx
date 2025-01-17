@@ -52,6 +52,7 @@ const RegisterCampModal = ({ setIsModalOpen, isModalOpen, camp }) => {
       participantUid: user?.uid,
       paymentStatus: false,
       confirmationStatus: false,
+      campRegTime: new Date(),
     };
 
     try {
