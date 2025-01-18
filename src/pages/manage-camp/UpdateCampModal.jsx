@@ -24,32 +24,31 @@ const UpdateCampModal = ({ camp, isModalOpen, setIsModalOpen }) => {
   };
 
   const onFinish = async (values) => {
-    
-   try {
-    setSubmitLoading(true);
-    const updatedCampData = {
-      ...values,
-      image: photoURL,
-    };
+    try {
+      setSubmitLoading(true);
+      const updatedCampData = {
+        ...values,
+        image: photoURL,
+      };
 
-    const res = await axiosSecure.patch(
-      `/update-camp/${camp._id}`,
-      updatedCampData
-    );
+      const res = await axiosSecure.patch(
+        `/update-camp/${camp._id}`,
+        updatedCampData
+      );
 
-    if(res.data.modifiedCount <= 0){
-      throw new Error("update failed.")
+      if (res.data.modifiedCount <= 0) {
+        throw new Error("update failed.");
+      }
+
+      // Success flow
+      refetch();
+      alert("updated");
+      setIsModalOpen(false);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setSubmitLoading(false);
     }
-    
-    // Success flow
-    refetch();
-    alert('updated');
-    setIsModalOpen(false)
-   } catch (error) {
-    console.log(error);
-   }finally{
-    setSubmitLoading(false);
-   }
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -242,10 +241,14 @@ const UpdateCampModal = ({ camp, isModalOpen, setIsModalOpen }) => {
         </Form.Item>
 
         <Form.Item label={null}>
-          <Button type="primary" htmlType="submit" loading={submitLoading}>
-            Add Camp
+          <Button type="primary" htmlType="submit" loading={submitLoading} className="mr-2">
+            Update Camp
+          </Button>
+          <Button onClick={()=> setIsModalOpen(false)} type="dashed" >
+            Cancel
           </Button>
         </Form.Item>
+        
       </Form>
     </Modal>
   );

@@ -7,6 +7,18 @@ const DashboardNav = ({ setOpen, open }) => {
   const { isAdmin } = useAdmin();
   const { user } = useAuth();
 
+  let link = false;
+
+  if(window.innerWidth < 767){
+    link = true
+  }
+
+  const drawerClose = () => {
+    if(link){
+      setOpen(!open)
+    }
+  }
+
   return (
     <>
       {isAdmin && user ? (
@@ -15,10 +27,10 @@ const DashboardNav = ({ setOpen, open }) => {
           <li>
             <NavLink to={"/profile"}>Profile</NavLink>
           </li>
-          <li onClick={() => setOpen(!open)}>
+          <li onClick={drawerClose}>
             <NavLink to={"/dashboard/add-camp"}>Add a Camp</NavLink>
           </li>
-          <li>
+          <li onClick={drawerClose}>
             <NavLink to={"/dashboard/manage-camps"}>Manage Camps</NavLink>
           </li>
           <li>
@@ -40,7 +52,9 @@ const DashboardNav = ({ setOpen, open }) => {
             </NavLink>
           </li>
           <li>
-            <NavLink to={`/dashboard/transactions/${user.uid}`}>Payment History</NavLink>
+            <NavLink to={`/dashboard/transactions/${user.uid}`}>
+              Payment History
+            </NavLink>
           </li>
         </>
       ) : (
@@ -57,8 +71,8 @@ const DashboardNav = ({ setOpen, open }) => {
 };
 
 DashboardNav.propTypes = {
-  setOpen: PropTypes.func,
-  open: PropTypes.bool,
+  setOpen: PropTypes.any,
+  open: PropTypes.any,
 };
 
 export default DashboardNav;

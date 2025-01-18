@@ -15,7 +15,7 @@ const ManageCamps = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
-  const { campsData, isLoading } = useCampsData();
+  const { campsData, isLoading, refetch } = useCampsData();
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -56,7 +56,7 @@ const ManageCamps = () => {
               {campsData
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row) => (
-                  <ManageTableRow row={row} key={row._id}  />
+                  <ManageTableRow row={row} key={row._id} refetch={refetch}  />
                 ))}
             </TableBody>
           </Table>

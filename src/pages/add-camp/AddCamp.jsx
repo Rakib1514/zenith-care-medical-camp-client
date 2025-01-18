@@ -71,8 +71,8 @@ const AddCamp = () => {
   return (
     <div>
       <SectionHeading
-        heading="Add Upcoming Camp"
-        subHeading="Better Treatment for everyone"
+        heading="Add a New Camp"
+        subHeading="Create and share essential details to organize your next medical camp."
       />
       <div className="grid md:grid-cols-2 gap-6">
         <Form
