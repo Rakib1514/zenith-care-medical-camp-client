@@ -34,7 +34,7 @@ const DashboardNav = ({ setOpen, open }) => {
             <NavLink to={"/dashboard/manage-camps"}>Manage Camps</NavLink>
           </li>
           <li>
-            <NavLink to={"/manage-registered-camps"}>Manage Reg Camps</NavLink>
+            <NavLink to={"/dashboard/manage-reg-camps"}>Manage Reg Camps</NavLink>
           </li>
         </>
       ) : user && !isAdmin ? (

@@ -87,10 +87,8 @@ const CheckoutForm = ({ camp }) => {
             return;
           }
   
-          const statusRes = await axiosSecure.patch(`/reg-camps/${_id}`, {
-            paymentStatus: true,
-          });
-  
+          const statusRes = await axiosSecure.patch(`/set-Payment-status/${_id}`);
+          
           if (!statusRes.data.modifiedCount) {
             setError(
               "payment status not confirmed. Please contact To customer Care"

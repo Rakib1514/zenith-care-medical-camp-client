@@ -19,7 +19,7 @@ const RegisteredCamps = () => {
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const { uid } = useParams();
   const axiosSecure = useAxiosSecure();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const { data: myRegCampsData, isLoading } = useQuery({
     queryKey: ["my-registered-camps", uid],
@@ -85,7 +85,9 @@ const RegisteredCamps = () => {
                           />
                         ) : (
                           <Button
-                          onClick={()=> navigate(`/dashboard/payment/${row._id}`)}
+                            onClick={() =>
+                              navigate(`/dashboard/payment/${row._id}`)
+                            }
                             size="small"
                             style={{
                               backgroundColor: "#0076BA",
@@ -98,7 +100,21 @@ const RegisteredCamps = () => {
                         )}
                       </TableCell>
                       <TableCell align="left">
-                        {row.confirmationStatus ? "Confirmed" : "Panding"}
+                        {row.confirmationStatus ? (
+                          <Badge
+                            count={"Confirmed"}
+                            style={{
+                              backgroundColor: "#52c41a",
+                            }}
+                          />
+                        ) : (
+                          <Badge
+                            count={"Pending"}
+                            style={{
+                              backgroundColor: "red",
+                            }}
+                          />
+                        )}
                       </TableCell>
                       <TableCell align="left">Cancel</TableCell>
                       <TableCell align="left">FeedBack</TableCell>

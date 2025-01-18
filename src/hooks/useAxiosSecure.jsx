@@ -2,10 +2,8 @@ import axios from "axios";
 import useAuth from "./useAuth";
 import { useNavigate } from "react-router-dom";
 
-// https://zenith-server.vercel.app
-// http://localhost:5000
 const axiosSecure = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: import.meta.env.VITE_BaseURL,
 });
 
 const useAxiosSecure = () => {
@@ -13,12 +11,12 @@ const useAxiosSecure = () => {
   const navigate = useNavigate();
 
   axiosSecure.interceptors.request.use(
-     (config) => {
+    (config) => {
       const token = localStorage.getItem("access-token");
       config.headers.authorization = token;
       return config;
     },
-     (error)=> {
+    (error) => {
       return Promise.reject(error);
     }
   );

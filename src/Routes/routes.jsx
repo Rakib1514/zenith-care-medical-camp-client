@@ -14,6 +14,7 @@ import RegisteredCamps from "../pages/registered-camps/RegisteredCamps";
 import Payment from "../pages/Payment/Payment";
 import PaymentHistory from "../pages/payment-history/PaymentHistory";
 import ManageCamps from "../pages/manage-camp/ManageCamps";
+import ManageRegCamps from "../pages/manage-reg-camps/ManageRegCamps";
 
 const router = createBrowserRouter([
   {
@@ -74,6 +75,14 @@ const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <ManageCamps />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "manage-reg-camps",
+        element: (
+          <AdminRoute>
+            <ManageRegCamps />
           </AdminRoute>
         ),
       },

@@ -14,6 +14,7 @@ const ManageTableRow = ({ row, refetch }) => {
   const [deleteBtnLoading, setDeleteBtnLoading] = useState(false);
   const axiosSecure = useAxiosSecure();
 
+
   const handleRemoveCamp = async () => {
     try {
       setDeleteBtnLoading(true);
@@ -32,6 +33,8 @@ const ManageTableRow = ({ row, refetch }) => {
       setDeleteBtnLoading(false);
     }
   };
+
+  
 
   return (
     <TableRow hover role="checkbox" tabIndex={-1}>
