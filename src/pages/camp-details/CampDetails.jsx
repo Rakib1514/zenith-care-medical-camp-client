@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { ScrollRestoration, useNavigate, useParams } from "react-router-dom";
+import { Link, ScrollRestoration, useNavigate, useParams } from "react-router-dom";
 import axiosPublic from "../../Utils/axiosPublic";
 import SectionHeading from "../../components/SectionHeading";
 import { Badge } from "antd";
@@ -10,6 +10,7 @@ import { MdOutlineDescription } from "react-icons/md";
 import { useState } from "react";
 import RegisterCampModal from "./RegisterCampModal";
 import useAuth from "../../hooks/useAuth";
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 const CampDetails = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -18,7 +19,11 @@ const CampDetails = () => {
   const navigate = useNavigate();
 
   const { id } = useParams();
-  const { data: camp = {}, isLoading } = useQuery({
+  const {
+    data: camp = {},
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["campDetails", id],
     queryFn: async () => {
       const res = await axiosPublic(`/camps/${id}`);
@@ -59,6 +64,12 @@ const CampDetails = () => {
       <div className="container mx-auto min-h-svh font-roboto">
         <ScrollRestoration />
         <SectionHeading heading={name} subHeading="Join Here" />
+        <Link to={'/camps'}>
+          <button className="btn btn-ghost">
+            <IoMdArrowRoundBack />
+            All Available Camps
+          </button>
+        </Link>
         <div className="grid md:grid-cols-2 grid-cols-1 gap-6 bg-menu_bg p-6">
           <Badge.Ribbon
             text={`Participated: ${participantCount}`}
@@ -75,7 +86,7 @@ const CampDetails = () => {
 
           <div>
             <div className="mb-8">
-              <p>Hello, {user?.displayName || ''}</p>
+              <p>Hello, {user?.displayName || ""}</p>
               <p>
                 <span className="font-semibold">{name}</span> is led by{" "}
                 <span className="italic font-semibold">
@@ -84,10 +95,7 @@ const CampDetails = () => {
                 , offering expert care and essential medical services to ensure
                 your health and well-being.
               </p>
-              <button
-                onClick={handleJoin}
-                className="btn btn-outline"
-              >
+              <button onClick={handleJoin} className="btn btn-outline">
                 Join Camp
               </button>
             </div>
@@ -123,6 +131,7 @@ const CampDetails = () => {
         setIsModalOpen={setIsModalOpen}
         isModalOpen={isModalOpen}
         camp={camp}
+        refetch={refetch}
       />
     </div>
   );

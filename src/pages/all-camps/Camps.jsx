@@ -18,7 +18,7 @@ const Camps = () => {
             heading="Explore Our Camps"
           />
         </div>
-        <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-6 campCardContainer">
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6 campCardContainer">
           {
             campsData.map(camp => <CampCard key={camp._id} camp={camp}/>)
           }

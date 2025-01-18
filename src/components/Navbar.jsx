@@ -1,8 +1,11 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import { SettingOutlined } from "@ant-design/icons";
+import { Avatar, Dropdown, Space } from "antd";
 
 const Navbar = () => {
   const { loading, user, userSignOut } = useAuth();
+  const navigate = useNavigate();
 
   const handleSignOut = async () => {
     try {
@@ -22,11 +25,7 @@ const Navbar = () => {
       </li>
 
       {user ? (
-        <>
-          <li>
-            <Link to="/dashboard">Dashboard</Link>
-          </li>
-        </>
+        <></>
       ) : (
         <>
           <li>
@@ -37,6 +36,41 @@ const Navbar = () => {
     </>
   );
 
+  const items = [
+    {
+      key: "1",
+      label: user?.displayName,
+      disabled: true,
+    },
+    {
+      type: "divider",
+    },
+    {
+      key: "2",
+      label: "Dashboard",
+      extra: "⌘D",
+      path: "/dashboard",
+    },
+    {
+      key: "3",
+      label: "Sign out",
+      extra: "⌘",
+      path: "/sign-out",
+    },
+  ];
+
+  const handleNavigate = ({ key }) => {
+    const selectItem = items.find((item) => item.key === key);
+
+    if (selectItem && selectItem.path) {
+      if (selectItem.path === "/sign-out") {
+        handleSignOut();
+        return;
+      }
+      navigate(selectItem.path);
+    }
+  };
+
   if (loading) {
     return <h2>Loading in navbar</h2>;
   }
@@ -45,8 +79,16 @@ const Navbar = () => {
     <div className="bg-menu_bg ">
       <div className="navbar container mx-auto">
         <div className="navbar-start">
-          <Link to="/" className="md:text-xl  md:font-semibold font-bold">
-            Zenith Care
+          <Link
+            to="/"
+            className="md:text-xl  md:font-semibold font-bold flex items-center gap-1"
+          >
+            <img
+              src="https://i.ibb.co.com/020DWTL/istockphoto-1321617070-1024x1024-1.png"
+              alt=""
+              className="h-10"
+            />
+            <span>Zenith Care</span>
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
@@ -55,37 +97,16 @@ const Navbar = () => {
         <div className="navbar-end">
           {/* User Profile */}
           {user ? (
-            <div className="dropdown dropdown-end">
-              <div
-                tabIndex={0}
-                role="button"
-                className="btn btn-ghost btn-circle avatar"
-              >
-                <div className="w-10 rounded-full">
-                  <img
-                    alt="Tailwind CSS Navbar component"
-                    src={user.photoURL}
-                  />
-                </div>
-              </div>
-              <ul
-                tabIndex={0}
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
-              >
-                <li>
-                  <a className="justify-between">
-                    Profile
-                    <span className="badge">New</span>
-                  </a>
-                </li>
-                <li>
-                  <a>Settings</a>
-                </li>
-                <li>
-                  <a onClick={handleSignOut}>Logout</a>
-                </li>
-              </ul>
-            </div>
+            <Dropdown
+              menu={{
+                items,
+                onClick: handleNavigate,
+              }}
+            >
+              <Space>
+                <Avatar size="large" icon={<img src={user?.photoURL} />} />
+              </Space>
+            </Dropdown>
           ) : (
             ""
           )}

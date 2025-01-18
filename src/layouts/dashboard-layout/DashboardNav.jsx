@@ -10,6 +10,7 @@ const DashboardNav = ({ setOpen, open }) => {
   return (
     <>
       {isAdmin && user ? (
+        // !Admin Routes
         <>
           <li>
             <NavLink to={"/profile"}>Profile</NavLink>
@@ -18,13 +19,14 @@ const DashboardNav = ({ setOpen, open }) => {
             <NavLink to={"/dashboard/add-camp"}>Add a Camp</NavLink>
           </li>
           <li>
-            <NavLink to={"/manage-camps"}>Manage Camps</NavLink>
+            <NavLink to={"/dashboard/manage-camps"}>Manage Camps</NavLink>
           </li>
           <li>
             <NavLink to={"/manage-registered-camps"}>Manage Reg Camps</NavLink>
           </li>
         </>
       ) : user && !isAdmin ? (
+        // ! User route
         <>
           <li>
             <NavLink to={"/"}>Analytics</NavLink>
@@ -46,7 +48,7 @@ const DashboardNav = ({ setOpen, open }) => {
       )}
 
       <div className="divider my-6 "> </div>
-
+      {/* For all user */}
       <li>
         <NavLink to={"/"}>Home</NavLink>
       </li>

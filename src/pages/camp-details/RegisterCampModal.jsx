@@ -22,7 +22,7 @@ import dayjs from "dayjs";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useState } from "react";
 
-const RegisterCampModal = ({ setIsModalOpen, isModalOpen, camp }) => {
+const RegisterCampModal = ({ setIsModalOpen, isModalOpen, camp, refetch }) => {
   const [regBtnLoading, setRegBtnLoading] = useState(false);
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
@@ -62,10 +62,15 @@ const RegisterCampModal = ({ setIsModalOpen, isModalOpen, camp }) => {
         throw new Error("inserted Id not returned");
       }
 
-      // success flow
-      alert(`Registration success. Reg Id: ${(await res).data.insertedId}`);
+      //! success flow
+      alert(`Registration success. Reg Id: ${res?.data?.insertedId}`);
+      
       form.resetFields();
       setIsModalOpen(false);
+      await axiosSecure.patch(`/participant-count/inc/${_id}`);
+      refetch();
+      // todo: extra work.
+      // show a modal to pay now or latter. or go to registered camp
     } catch (error) {
       console.log(error);
     } finally {
@@ -256,6 +261,7 @@ RegisterCampModal.propTypes = {
   isModalOpen: PropTypes.bool,
   handleRegisterCamp: PropTypes.func,
   camp: PropTypes.object,
+  refetch: PropTypes.func,
 };
 
 export default RegisterCampModal;

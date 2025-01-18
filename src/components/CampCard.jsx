@@ -6,9 +6,13 @@ import { FaRegCalendarTimes } from "react-icons/fa";
 import { FaUserDoctor } from "react-icons/fa6";
 import { GoArrowUpLeft } from "react-icons/go";
 import { MdEventAvailable } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const CampCard = ({ camp }) => {
+
+  const locate = useLocation();
+  
+  
   const {
     image,
     name,
@@ -18,11 +22,16 @@ const CampCard = ({ camp }) => {
     timeFrom,
     timeTo,
     fees,
+    description,
     _id,
   } = camp;
 
   const startDate = dayjs(timeFrom).format("DD-MMM-YY")
   const endDate = dayjs(timeTo).format("DD-MMM-YY")
+  
+
+  
+  const newDes = description.split(' ').slice(0, 8).join(' ')
   
 
   return (
@@ -49,11 +58,11 @@ const CampCard = ({ camp }) => {
           <p className="flex gap-1 items-center">
             <CiMoneyCheck1 className="text-xl" /> ${fees}
           </p>
-          <p className="flex gap-1 items-center">
+          <p className="flex gap-1">
             <CiLocationOn className="text-xl" />
             {location}
           </p>
-          <p className="flex gap-1 items-center">
+          <p className="flex gap-1 items-center ">
             <MdEventAvailable  className="text-xl" />
             From {startDate} 
           </p>
@@ -61,6 +70,8 @@ const CampCard = ({ camp }) => {
             <FaRegCalendarTimes   className="text-xl" />
             To {endDate}
           </p>
+          {locate.pathname !== '/' && <p className="pt-5">{newDes}... <Link  to={`/camp-details/${_id}`} className="text-sm text-blue-600 underline">Read More</Link> </p>}
+          
         </div>
       </div>
       <div className="h-full flex justify-end items-end">

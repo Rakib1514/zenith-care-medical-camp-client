@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import { useNavigate } from "react-router-dom";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -12,7 +11,7 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import SectionHeading from "../../components/SectionHeading";
 import dayjs from "dayjs";
-import { Badge, Button } from "antd";
+import { Badge } from "antd";
 import { useState } from "react";
 
 const PaymentHistory = () => {
@@ -20,7 +19,7 @@ const PaymentHistory = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
-  const navigate = useNavigate();
+  
 
   const axiosSecure = useAxiosSecure();
 

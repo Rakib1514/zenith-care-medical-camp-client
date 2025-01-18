@@ -19,6 +19,7 @@ const AddCamp = () => {
     setSubmitLoading(true);
     const newCampData = {
       ...values,
+      postedTime: new Date(),
       image: photoURL,
       contributor: user.uid,
       participantCount: 0,
@@ -213,7 +214,7 @@ const AddCamp = () => {
                     marginTop: 8,
                   }}
                 >
-                  Upload Your Image
+                  Upload Camp Image
                 </div>
               </button>
             </Upload>
