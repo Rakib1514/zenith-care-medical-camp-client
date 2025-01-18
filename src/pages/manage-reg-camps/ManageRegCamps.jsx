@@ -17,6 +17,9 @@ const ManageRegCamps = () => {
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const axiosSecure = useAxiosSecure();
 
+  console.log("Page", page);
+  console.log( "Rows per page",rowsPerPage);
+  
   const {
     data: allRegCampData,
     isLoading,
@@ -55,6 +58,7 @@ const ManageRegCamps = () => {
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
               <TableRow>
+                <TableCell>#</TableCell>
                 <TableCell>Participant Name</TableCell>
                 <TableCell>Camp Name</TableCell>
                 <TableCell align="left">Fee</TableCell>
@@ -67,12 +71,15 @@ const ManageRegCamps = () => {
             <TableBody>
               {allRegCampData
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row) => {
+                .map((row, idx) => {
                   return (
                     <ManageRegCampAdminRow
                       key={row._id}
+                      idx={idx}
                       row={row}
                       refetch={refetch}
+                      rowsPerPage={rowsPerPage}
+                      page={page}
                     />
                   );
                 })}

@@ -43,6 +43,7 @@ const ManageCamps = () => {
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
               <TableRow>
+                <TableCell>#</TableCell>
                 <TableCell>Camp Name</TableCell>
                 <TableCell align="left">Start Date</TableCell>
                 <TableCell align="left">End Date</TableCell>
@@ -55,8 +56,8 @@ const ManageCamps = () => {
             <TableBody>
               {campsData
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row) => (
-                  <ManageTableRow row={row} key={row._id} refetch={refetch} />
+                .map((row, idx) => (
+                  <ManageTableRow row={row} key={row._id} refetch={refetch} rowsPerPage={rowsPerPage} page={page} idx={idx}/>
                 ))}
             </TableBody>
           </Table>

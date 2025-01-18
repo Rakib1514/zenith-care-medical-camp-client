@@ -7,13 +7,12 @@ import { Button, Popconfirm } from "antd";
 import UpdateCampModal from "./UpdateCampModal";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
-const ManageTableRow = ({ row, refetch }) => {
+const ManageTableRow = ({ row, refetch, idx, rowsPerPage, page }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const startDate = dayjs(row.timeFrom).format("DD-MMM-YY");
   const endDate = dayjs(row.timeTo).format("DD-MMM-YY");
   const [deleteBtnLoading, setDeleteBtnLoading] = useState(false);
   const axiosSecure = useAxiosSecure();
-
 
   const handleRemoveCamp = async () => {
     try {
@@ -34,10 +33,11 @@ const ManageTableRow = ({ row, refetch }) => {
     }
   };
 
-  
-
   return (
     <TableRow hover role="checkbox" tabIndex={-1}>
+      <TableCell align="left">
+        {page === 0 ? idx + 1 : idx + (rowsPerPage * page + 1)}
+      </TableCell>
       <TableCell align="left">{row.name}</TableCell>
       <TableCell align="left">{startDate}</TableCell>
       <TableCell align="left">{endDate}</TableCell>
@@ -85,6 +85,9 @@ const ManageTableRow = ({ row, refetch }) => {
 ManageTableRow.propTypes = {
   row: PropTypes.object,
   refetch: PropTypes.func,
+  idx: PropTypes.number,
+  rowsPerPage: PropTypes.number,
+  page: PropTypes.number,
 };
 
 export default ManageTableRow;

@@ -6,7 +6,7 @@ import { useState } from "react";
 import dayjs from "dayjs";
 import { Badge, Button, Popconfirm } from "antd";
 
-const ManageRegCampAdminRow = ({ row, refetch }) => {
+const ManageRegCampAdminRow = ({ row, refetch, idx, page, rowsPerPage }) => {
   const [confirmBtnLoading, setConfirmBtnLoading] = useState(false);
   const [cancelBtnLoading, setCancelBtnLoading] = useState(false);
   const axiosSecure = useAxiosSecure();
@@ -47,8 +47,14 @@ const ManageRegCampAdminRow = ({ row, refetch }) => {
 
   const joinDate = dayjs(row.joinDate).format("DD-MMM-YY");
 
+  // page = 0
+  // row-per-page = 5
+
   return (
     <TableRow hover role="checkbox" tabIndex={-1} key={row._id}>
+      <TableCell align="left">
+        {page === 0 ? idx + 1 : idx + (rowsPerPage * page + 1)}
+      </TableCell>
       <TableCell align="left">{row.participantName}</TableCell>
       <TableCell align="left">{row.campName}</TableCell>
       <TableCell align="left">${row.campFee}</TableCell>
@@ -125,6 +131,9 @@ const ManageRegCampAdminRow = ({ row, refetch }) => {
 ManageRegCampAdminRow.propTypes = {
   row: PropTypes.object,
   refetch: PropTypes.func,
+  idx: PropTypes.number,
+  page: PropTypes.number,
+  rowsPerPage: PropTypes.number,
 };
 
 export default ManageRegCampAdminRow;

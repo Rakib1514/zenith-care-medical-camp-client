@@ -19,8 +19,6 @@ const PaymentHistory = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
-  
-
   const axiosSecure = useAxiosSecure();
 
   const { data: myPayHistory = [], isLoading } = useQuery({
@@ -67,12 +65,16 @@ const PaymentHistory = () => {
             <TableBody>
               {myPayHistory
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row) => {
+                .map((row, idx) => {
+                  const payDate = dayjs
+                    .unix(row.payTime)
+                    .format("DD-MM-YY HH:MM");
 
-                  const payDate = dayjs.unix(row.payTime).format("DD-MM-YY HH:MM")
-                  
                   return (
                     <TableRow hover role="checkbox" tabIndex={-1} key={row._id}>
+                      <TableCell align="left">
+                        {page === 0 ? idx + 1 : idx + (rowsPerPage * page + 1)}
+                      </TableCell>
                       <TableCell align="left">{row.campName}</TableCell>
                       <TableCell align="left">${row.campFee}</TableCell>
                       <TableCell align="left">{payDate} UTC</TableCell>
@@ -110,8 +112,6 @@ const PaymentHistory = () => {
                           />
                         )}
                       </TableCell>
-
-                      
                     </TableRow>
                   );
                 })}

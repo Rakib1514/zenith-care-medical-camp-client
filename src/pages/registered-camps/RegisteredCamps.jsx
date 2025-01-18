@@ -78,6 +78,7 @@ const RegisteredCamps = () => {
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
               <TableRow>
+                <TableCell align="left">#</TableCell>
                 <TableCell align="left">Camp Name</TableCell>
                 <TableCell align="left">Participant</TableCell>
                 <TableCell align="left">Fee</TableCell>
@@ -91,11 +92,12 @@ const RegisteredCamps = () => {
             <TableBody>
               {myRegCampsData
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row) => {
+                .map((row, idx) => {
                   const joinDate = dayjs(row.joinDate).format("DD-MMM-YY");
 
                   return (
                     <TableRow hover role="checkbox" tabIndex={-1} key={row._id}>
+                      <TableCell align="left">{page === 0 ? idx + 1 : idx + (rowsPerPage * page + 1)}</TableCell>
                       <TableCell align="left">{row.campName}</TableCell>
                       <TableCell align="left">{row.participantName}</TableCell>
                       <TableCell align="left">${row.campFee}</TableCell>
