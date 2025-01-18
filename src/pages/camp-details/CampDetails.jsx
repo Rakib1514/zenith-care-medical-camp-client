@@ -1,8 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
-import { Link, ScrollRestoration, useNavigate, useParams } from "react-router-dom";
+import {
+  Link,
+  ScrollRestoration,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
 import axiosPublic from "../../Utils/axiosPublic";
 import SectionHeading from "../../components/SectionHeading";
-import { Badge } from "antd";
+import { Badge, Skeleton } from "antd";
 import { FaLocationDot } from "react-icons/fa6";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import dayjs from "dayjs";
@@ -11,6 +16,8 @@ import { useState } from "react";
 import RegisterCampModal from "./RegisterCampModal";
 import useAuth from "../../hooks/useAuth";
 import { IoMdArrowRoundBack } from "react-icons/io";
+import HeadingLoading from "../../components/loading-components/HeadingLoading";
+import DetailsLoading from "../../components/loading-components/DetailsLoading";
 
 const CampDetails = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -55,8 +62,17 @@ const CampDetails = () => {
     setIsModalOpen(true);
   };
 
+
+  
   if (isLoading) {
-    return <h2>Loading in details page....</h2>;
+    return (
+      <div>
+        <div className="px-6">
+          <HeadingLoading />
+          <DetailsLoading />
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -64,7 +80,7 @@ const CampDetails = () => {
       <div className="container mx-auto min-h-svh font-roboto">
         <ScrollRestoration />
         <SectionHeading heading={name} subHeading="Join Here" />
-        <Link to={'/camps'}>
+        <Link to={"/camps"}>
           <button className="btn btn-ghost">
             <IoMdArrowRoundBack />
             All Available Camps

@@ -1,7 +1,7 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
-import { SettingOutlined } from "@ant-design/icons";
 import { Avatar, Dropdown, Space } from "antd";
+import NavbarLoading from "./loading-components/NavbarLoading";
 
 const Navbar = () => {
   const { loading, user, userSignOut } = useAuth();
@@ -71,8 +71,9 @@ const Navbar = () => {
     }
   };
 
+
   if (loading) {
-    return <h2>Loading in navbar</h2>;
+    return <NavbarLoading />;
   }
 
   return (
@@ -96,7 +97,7 @@ const Navbar = () => {
         </div>
         <div className="navbar-end">
           {/* User Profile */}
-          {user ? (
+          {user && (
             <Dropdown
               menu={{
                 items,
@@ -107,8 +108,6 @@ const Navbar = () => {
                 <Avatar size="large" icon={<img src={user?.photoURL} />} />
               </Space>
             </Dropdown>
-          ) : (
-            ""
           )}
         </div>
         <div className="dropdown dropdown-end">

@@ -2,6 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import axiosPublic from "../../../Utils/axiosPublic";
 import SectionHeading from "../../../components/SectionHeading";
 import CampCard from "../../../components/CampCard";
+import CardLoading from "../../../components/loading-components/CardLoading";
+import HeadingLoading from "../../../components/loading-components/HeadingLoading";
 
 const PopularCamps = () => {
   const { data: campsData = [], isLoading } = useQuery({
@@ -13,16 +15,27 @@ const PopularCamps = () => {
   });
 
   if (isLoading) {
-    return <h2>Loading in popular camps component ,...</h2>;
+    return (
+      <div>
+        <HeadingLoading />
+        <CardLoading />
+      </div>
+    );
   }
 
   return (
-    <div className="mt-12 container mx-auto px-4 campCardContainer">
+    <div className="mt-12 container mx-auto px-4 campCardContainer mb-12">
       <div>
-        <SectionHeading subHeading="Discover the Most Sought-After Camps for Your Health" heading="Top Camps You’ll Love" />
-        <div className="flex justify-center items-center"> <button className="btn btn-outline mb-4">See all Camps</button></div>
+        <SectionHeading
+          subHeading="Discover the Most Sought-After Camps for Your Health"
+          heading="Top Camps You’ll Love"
+        />
+        <div className="flex justify-center items-center">
+          {" "}
+          <button className="btn btn-outline mb-4">See all Camps</button>
+        </div>
       </div>
-      <div className="grid lg:grid-cols-2 md:grid-cols-4 gap-4 md:mt-0 mt-4 " >
+      <div className="grid lg:grid-cols-2 md:grid-cols-4 gap-4 md:mt-0 mt-4 ">
         <img
           src="https://i.ibb.co.com/h8cw3cy/2148352065-1.jpg"
           alt=""
