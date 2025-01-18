@@ -3,7 +3,7 @@ import Navbar from "../../components/Navbar";
 
 const MainLayout = () => {
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <header >
         <nav className="fixed z-10 w-full">
           <Navbar/>

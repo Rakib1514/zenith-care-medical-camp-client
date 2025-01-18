@@ -10,8 +10,6 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import { useState } from "react";
 import SectionHeading from "../../components/SectionHeading";
-import dayjs from "dayjs";
-import { Badge, Button, Popconfirm } from "antd";
 import ManageRegCampAdminRow from "./ManageRegCampAdminRow";
 
 const ManageRegCamps = () => {

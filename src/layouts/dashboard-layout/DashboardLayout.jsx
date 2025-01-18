@@ -21,7 +21,7 @@ const DashboardLayout = () => {
   }
 
   return (
-    <div className="px-4 md:px-0">
+    <div className="px-4 md:px-0 overflow-x-hidden">
       <div className=" md:hidden">
         <Button type="primary" onClick={showDrawer}>
           {open ? "X" : "O"}

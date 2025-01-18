@@ -64,7 +64,7 @@ const RegisterCampModal = ({ setIsModalOpen, isModalOpen, camp, refetch }) => {
 
       //! success flow
       alert(`Registration success. Reg Id: ${res?.data?.insertedId}`);
-      
+
       form.resetFields();
       setIsModalOpen(false);
       await axiosSecure.patch(`/participant-count/inc/${_id}`);
@@ -140,9 +140,6 @@ const RegisterCampModal = ({ setIsModalOpen, isModalOpen, camp, refetch }) => {
       <Form
         form={form}
         name="login"
-        initialValues={{
-          remember: true,
-        }}
         style={{
           maxWidth: 360,
         }}
@@ -194,7 +191,7 @@ const RegisterCampModal = ({ setIsModalOpen, isModalOpen, camp, refetch }) => {
           <Select
             prefix={<BsGenderAmbiguous />}
             placeholder="Gender"
-            initialValues={null}
+            
             options={[
               {
                 value: "male",

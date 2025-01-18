@@ -12,22 +12,45 @@ import TableRow from "@mui/material/TableRow";
 import { useState } from "react";
 import SectionHeading from "../../components/SectionHeading";
 import dayjs from "dayjs";
-import { Badge, Button } from "antd";
+import { Badge, Button, Popconfirm } from "antd";
 
 const RegisteredCamps = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [cancelBtnLoading, setCancelBtnLoading] = useState(false);
   const { uid } = useParams();
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
 
-  const { data: myRegCampsData, isLoading } = useQuery({
+  const {
+    data: myRegCampsData,
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["my-registered-camps", uid],
     queryFn: async () => {
       const res = await axiosSecure.get(`/reg-camps/${uid}`);
       return res.data;
     },
   });
+
+  const handleCancel = async (id) => {
+    try {
+      setCancelBtnLoading(true);
+
+      const res = await axiosSecure.delete(`/cancel-reg/${id}`);
+      if(res.data.deletedCount <=0){
+        throw new Error("Cancellation failed. delete count 0")
+      }
+
+      refetch();
+      alert("deleted");
+    } catch (error) {
+      console.log(error);
+    }finally{
+      setCancelBtnLoading(false)
+    }
+  };
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -55,7 +78,8 @@ const RegisteredCamps = () => {
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
               <TableRow>
-                <TableCell>Camp Name</TableCell>
+                <TableCell align="left">Camp Name</TableCell>
+                <TableCell align="left">Participant</TableCell>
                 <TableCell align="left">Fee</TableCell>
                 <TableCell align="left">Join Date</TableCell>
                 <TableCell align="left">Payment Status</TableCell>
@@ -73,6 +97,7 @@ const RegisteredCamps = () => {
                   return (
                     <TableRow hover role="checkbox" tabIndex={-1} key={row._id}>
                       <TableCell align="left">{row.campName}</TableCell>
+                      <TableCell align="left">{row.participantName}</TableCell>
                       <TableCell align="left">${row.campFee}</TableCell>
                       <TableCell align="left">{joinDate}</TableCell>
                       <TableCell align="left">
@@ -99,6 +124,7 @@ const RegisteredCamps = () => {
                           </Button>
                         )}
                       </TableCell>
+
                       <TableCell align="left">
                         {row.confirmationStatus ? (
                           <Badge
@@ -116,7 +142,25 @@ const RegisteredCamps = () => {
                           />
                         )}
                       </TableCell>
-                      <TableCell align="left">Cancel</TableCell>
+
+                      <TableCell align="left">
+                        <Popconfirm
+                          title="Cancel Registration!"
+                          description="Are you sure to Cancel this Camp Registration?"
+                          onConfirm={() => handleCancel(row._id)}
+                          okText="Yes"
+                          cancelText="No"
+                        >
+                          <Button
+                            size="small"
+                            danger
+                            disabled={row.paymentStatus}
+                            loading={cancelBtnLoading}
+                          >
+                            Cancel
+                          </Button>
+                        </Popconfirm>
+                      </TableCell>
                       <TableCell align="left">FeedBack</TableCell>
                     </TableRow>
                   );
