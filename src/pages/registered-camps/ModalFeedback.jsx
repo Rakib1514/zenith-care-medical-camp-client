@@ -88,7 +88,7 @@ const ModalFeedBack = ({ isModalOpen, setIsModalOpen, regCamp,refetch }) => {
         </Form.Item>
 
         <Form.Item label="Tell Us More" name="feedbackComment">
-          <TextArea rows={4} />
+          <TextArea rows={4} maxLength={200} placeholder="Max 200 character"/>
         </Form.Item>
         <Form.Item label={null}>
           <Button type="primary" htmlType="submit" loading={submitBtnLoading}>

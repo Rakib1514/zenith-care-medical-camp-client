@@ -25,7 +25,7 @@ const DashboardNav = ({ setOpen, open }) => {
         // !Admin Routes
         <>
           <li>
-            <NavLink to={"/profile"}>Profile</NavLink>
+            <NavLink to={`/`}>Profile</NavLink>
           </li>
           <li onClick={drawerClose}>
             <NavLink to={"/dashboard/add-camp"}>Add a Camp</NavLink>
@@ -44,7 +44,7 @@ const DashboardNav = ({ setOpen, open }) => {
             <NavLink to={"/"}>Analytics</NavLink>
           </li>
           <li>
-            <NavLink to={"/"}>Profile</NavLink>
+            <NavLink to={`/dashboard/profile/${user?.uid}`}>Profile</NavLink>
           </li>
           <li>
             <NavLink to={`/dashboard/registered-camps/${user?.uid}`}>

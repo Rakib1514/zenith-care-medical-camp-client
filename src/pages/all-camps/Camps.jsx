@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import { Pagination, Input, Button, Dropdown, Space } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 import axiosPublic from "../../Utils/axiosPublic";
+import { FaColumns } from "react-icons/fa";
+import { BiColumns } from "react-icons/bi";
 const { Search } = Input;
 
 const Camps = () => {
@@ -16,6 +18,7 @@ const Camps = () => {
   const itemPerPage = 9;
   const [campsData, setCampsData] = useState([]);
   const [searchLoading, setSearchLoading] = useState(false);
+  const [twoColumn, setTwoColumn] = useState(false);
 
   useEffect(() => {
     setCampsData(initialCampData);
@@ -62,15 +65,17 @@ const Camps = () => {
       const sortedData = [...campsData].sort((a, b) => a.fees - b.fees);
       setCampsData(sortedData);
     } else if (value === "nameAZ") {
-      const sortedData = [...campsData].sort((a, b) =>a.name.localeCompare(b.name));
+      const sortedData = [...campsData].sort((a, b) =>
+        a.name.localeCompare(b.name)
+      );
       setCampsData(sortedData);
     } else if (value === "nameZA") {
-      const sortedData = [...campsData].sort((a, b) =>b.name.localeCompare(a.name));
+      const sortedData = [...campsData].sort((a, b) =>
+        b.name.localeCompare(a.name)
+      );
       setCampsData(sortedData);
     }
   };
-
-  // console.log(sortValue);
 
   const items = [
     {
@@ -140,7 +145,7 @@ const Camps = () => {
             subHeading="Find the Perfect Camp for Your Health and Wellness"
             heading="Explore Our Camps"
           />
-          <div className="my-4">
+          <div className="my-4 flex justify-between items-center">
             <div>
               <Search
                 loading={searchLoading}
@@ -154,10 +159,15 @@ const Camps = () => {
                 onClick={() => setCampsData(initialCampData)}
                 className="mx-1"
               >
-                All
+                Reset
               </Button>
             </div>
-            <div>
+            <div className="cursor-pointer flex items-center justify-center gap-2">
+              <div className="hidden lg:flex">
+                <Button onClick={() => setTwoColumn(!twoColumn)}>
+                  {twoColumn ? <BiColumns /> : <FaColumns />}
+                </Button>
+              </div>
               <Dropdown
                 onChange={handleSort}
                 menu={{
@@ -180,7 +190,11 @@ const Camps = () => {
             <CardLoading />
           </div>
         ) : currentItems.length ? (
-          <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6 campCardContainer">
+          <div
+            className={`grid ${
+              twoColumn ? "lg:grid-cols-2" : "lg:grid-cols-3"
+            } md:grid-cols-2 grid-cols-1 gap-6 campCardContainer`}
+          >
             {currentItems.map((camp, idx) => (
               <CampCard idx={idx} key={camp._id} camp={camp} />
             ))}
@@ -189,7 +203,7 @@ const Camps = () => {
           <div className="min-h-svh">
             <h2 className="uppercase text-center font-semibold text-3xl py-8">
               No Data found
-            </h2>{" "}
+            </h2>
           </div>
         )}
         <div className="mt-8 flex justify-center items-center">

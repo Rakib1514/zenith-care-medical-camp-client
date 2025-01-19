@@ -15,6 +15,7 @@ import Payment from "../pages/Payment/Payment";
 import PaymentHistory from "../pages/payment-history/PaymentHistory";
 import ManageCamps from "../pages/manage-camp/ManageCamps";
 import ManageRegCamps from "../pages/manage-reg-camps/ManageRegCamps";
+import UserProfile from "../layouts/profile/UserProfile";
 
 const router = createBrowserRouter([
   {
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
+      {
+        path: "profile/:uid",
+        element: <UserProfile />,
+      },
       // Admin Routes
       {
         path: "add-camp",
