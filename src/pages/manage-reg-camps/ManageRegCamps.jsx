@@ -46,7 +46,7 @@ const ManageRegCamps = () => {
   }
 
   return (
-    <>
+    <div>
       <div>
         <SectionHeading
           heading="Registered camps"
@@ -54,7 +54,7 @@ const ManageRegCamps = () => {
         />
       </div>
       <Paper sx={{ width: "100%", overflow: "hidden" }}>
-        <TableContainer sx={{ maxHeight: 440 }}>
+        <TableContainer sx={{ maxHeight: 440, }}>
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
               <TableRow>
@@ -96,7 +96,7 @@ const ManageRegCamps = () => {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper>
-    </>
+    </div>
   );
 };
 

@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import axiosPublic from "../../Utils/axiosPublic";
 import SectionHeading from "../../components/SectionHeading";
-import { Badge, Skeleton } from "antd";
+import { Badge } from "antd";
 import { FaLocationDot } from "react-icons/fa6";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import dayjs from "dayjs";

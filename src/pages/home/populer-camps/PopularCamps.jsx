@@ -24,7 +24,7 @@ const PopularCamps = () => {
   }
 
   return (
-    <div className="mt-12 container mx-auto px-4 campCardContainer mb-12">
+    <div className="mt-12 container mx-auto px-4 campCardContainer mb-12 ">
       <div>
         <SectionHeading
           subHeading="Discover the Most Sought-After Camps for Your Health"

@@ -51,7 +51,13 @@ const ManageRegCampAdminRow = ({ row, refetch, idx, page, rowsPerPage }) => {
   // row-per-page = 5
 
   return (
-    <TableRow hover role="checkbox" tabIndex={-1} key={row._id}>
+    <TableRow
+      hover
+      role="checkbox"
+      tabIndex={-1}
+      key={row._id}
+      className="overflow-x-hidden"
+    >
       <TableCell align="left">
         {page === 0 ? idx + 1 : idx + (rowsPerPage * page + 1)}
       </TableCell>
@@ -110,7 +116,9 @@ const ManageRegCampAdminRow = ({ row, refetch, idx, page, rowsPerPage }) => {
       <TableCell align="left">
         <Popconfirm
           title="Cancel Registration"
-          description="Are you sure to Cancel And Remove This Registered camp?"
+          description={`Are you sure to Cancel This Registration? User ${
+            row.participantName
+          }, ${row?.paymentStatus ? `Paid $${row.campFee}` : ""}`}
           onConfirm={() => handleCancel(row._id)}
           okText="Cancel & Remove"
           cancelText="No"

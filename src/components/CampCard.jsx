@@ -8,11 +8,9 @@ import { GoArrowUpLeft } from "react-icons/go";
 import { MdEventAvailable } from "react-icons/md";
 import { Link, useLocation } from "react-router-dom";
 
-const CampCard = ({ camp }) => {
-
+const CampCard = ({ camp, idx }) => {
   const locate = useLocation();
-  
-  
+
   const {
     image,
     name,
@@ -26,16 +24,16 @@ const CampCard = ({ camp }) => {
     _id,
   } = camp;
 
-  const startDate = dayjs(timeFrom).format("DD-MMM-YY")
-  const endDate = dayjs(timeTo).format("DD-MMM-YY")
-  
+  const startDate = dayjs(timeFrom).format("DD-MMM-YY");
+  const endDate = dayjs(timeTo).format("DD-MMM-YY");
 
-  
-  const newDes = description.split(' ').slice(0, 8).join(' ')
-  
+  const newDes = description.split(" ").slice(0, 8).join(" ");
 
   return (
-    <div className=" bg-menu_bg  flex flex-col relative rounded-br-[2.6rem] hover:scale-[1.007] transition-transform duration-300 ease-in-out border border-gray-300 shadow-md">
+    <div
+      className=" bg-menu_bg  flex flex-col relative rounded-br-[2.6rem] hover:scale-[1.007] transition-transform duration-300 ease-in-out border border-gray-300 shadow-md"
+      // data-aos={`${idx % 2 === 0 ? "fade-up-right" : "fade-up-left"}`}
+    >
       <div>
         <Badge.Ribbon
           text={`Participated: ${participantCount}`}
@@ -53,7 +51,7 @@ const CampCard = ({ camp }) => {
         <div className="lg:px-6 px-2 pt-2 space-y-1 ">
           <h2 className="md:text-xl font-bold text-secondary">{name}</h2>
           <p className="flex gap-1 items-center">
-            <FaUserDoctor  className="text-xl" /> {drName}
+            <FaUserDoctor className="text-xl" /> {drName}
           </p>
           <p className="flex gap-1 items-center">
             <CiMoneyCheck1 className="text-xl" /> ${fees}
@@ -63,15 +61,24 @@ const CampCard = ({ camp }) => {
             {location}
           </p>
           <p className="flex gap-1 items-center ">
-            <MdEventAvailable  className="text-xl" />
-            From {startDate} 
+            <MdEventAvailable className="text-xl" />
+            From {startDate}
           </p>
           <p className="flex gap-1 items-center">
-            <FaRegCalendarTimes   className="text-xl" />
+            <FaRegCalendarTimes className="text-xl" />
             To {endDate}
           </p>
-          {locate.pathname !== '/' && <p className="pt-5">{newDes}... <Link  to={`/camp-details/${_id}`} className="text-sm text-blue-600 underline">Read More</Link> </p>}
-          
+          {locate.pathname !== "/" && (
+            <p className="pt-5">
+              {newDes}...{" "}
+              <Link
+                to={`/camp-details/${_id}`}
+                className="text-sm text-blue-600 underline"
+              >
+                Read More
+              </Link>{" "}
+            </p>
+          )}
         </div>
       </div>
       <div className="h-full flex justify-end items-end">
@@ -91,7 +98,7 @@ const CampCard = ({ camp }) => {
           }}
         >
           <Link to={`/camp-details/${_id}`} className="campCardBtn">
-          <GoArrowUpLeft className="text-3xl"/>
+            <GoArrowUpLeft className="text-3xl" />
           </Link>
         </div>
       </div>
