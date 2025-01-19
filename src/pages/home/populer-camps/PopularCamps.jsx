@@ -4,6 +4,7 @@ import SectionHeading from "../../../components/SectionHeading";
 import CampCard from "../../../components/CampCard";
 import CardLoading from "../../../components/loading-components/CardLoading";
 import HeadingLoading from "../../../components/loading-components/HeadingLoading";
+import SimpleParallax from "simple-parallax-js";
 
 const PopularCamps = () => {
   const { data: campsData = [], isLoading } = useQuery({
@@ -36,11 +37,14 @@ const PopularCamps = () => {
         </div>
       </div>
       <div className="grid lg:grid-cols-2 md:grid-cols-4 gap-4 md:mt-0 mt-4 ">
+        <SimpleParallax>
         <img
           src="https://i.ibb.co.com/h8cw3cy/2148352065-1.jpg"
           alt=""
           className="h-full w-full object-cover hidden md:block"
         />
+        </SimpleParallax>
+        
         <div className="grid grid-cols-2 gap-4 md:col-span-3 lg:col-span-1">
           {campsData.map((camp, idx) => {
             if (idx === 0 || idx === 1) {
@@ -58,11 +62,14 @@ const PopularCamps = () => {
             }
           })}
         </div>
+        <SimpleParallax>
         <img
-          src="https://i.ibb.co.com/kKrfkyS/doctor-563429-1920-1.jpg"
+          src="https://i.ibb.co.com/L0KnSbM/84780-1.jpg"
           alt=""
           className="h-full w-full object-cover hidden md:block"
         />
+        </SimpleParallax>
+        
       </div>
     </div>
   );
