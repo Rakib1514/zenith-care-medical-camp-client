@@ -12,7 +12,7 @@ const MainLayout = () => {
   //   });
   // }, []);
   return (
-    <div className="overflow-hidden">
+    <div>
       <header>
         <nav className="fixed z-10 w-full">
           <Navbar/>

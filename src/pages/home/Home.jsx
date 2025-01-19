@@ -1,4 +1,5 @@
 import Banner from "./Hero/Banner";
+import PhotoGallery from "./photo-gallery/PhotoGallery";
 import PopularCamps from "./populer-camps/PopularCamps";
 import UserFeedback from "./user-feedback/UserFeedback";
 
@@ -8,6 +9,8 @@ const Home = () => {
       <Banner />
       <PopularCamps />
       <UserFeedback />
+      <PhotoGallery />
+      <div className="min-h-screen" />
     </div>
   );
 };
