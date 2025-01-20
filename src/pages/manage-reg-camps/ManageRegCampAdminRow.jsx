@@ -5,6 +5,7 @@ import TableRow from "@mui/material/TableRow";
 import { useState } from "react";
 import dayjs from "dayjs";
 import { Badge, Button, Popconfirm } from "antd";
+import { messageError, messageSuccess } from "../../Utils/messageAlert";
 
 const ManageRegCampAdminRow = ({ row, refetch, idx, page, rowsPerPage }) => {
   const [confirmBtnLoading, setConfirmBtnLoading] = useState(false);
@@ -21,8 +22,9 @@ const ManageRegCampAdminRow = ({ row, refetch, idx, page, rowsPerPage }) => {
       }
 
       refetch();
+      messageSuccess("Registration Confirmed")
     } catch (error) {
-      console.log(error);
+      messageError(error.message);
     } finally {
       setConfirmBtnLoading(false);
     }
@@ -37,9 +39,9 @@ const ManageRegCampAdminRow = ({ row, refetch, idx, page, rowsPerPage }) => {
         throw new Error("Cancellation Failed");
       }
       refetch();
-      alert("deleted");
+      messageSuccess("Registration Canceled");
     } catch (error) {
-      console.log(error);
+      messageError(error.message);
     } finally {
       setCancelBtnLoading(false);
     }

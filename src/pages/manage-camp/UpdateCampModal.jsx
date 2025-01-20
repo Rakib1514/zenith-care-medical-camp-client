@@ -8,6 +8,7 @@ import axiosPublic from "../../Utils/axiosPublic";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import dayjs from "dayjs";
 import useCampsData from "../../hooks/useCampsData";
+import { messageError, messageSuccess } from "../../Utils/messageAlert";
 
 const UpdateCampModal = ({ camp, isModalOpen, setIsModalOpen }) => {
   const [submitLoading, setSubmitLoading] = useState(false);
@@ -42,10 +43,10 @@ const UpdateCampModal = ({ camp, isModalOpen, setIsModalOpen }) => {
 
       // Success flow
       refetch();
-      alert("updated");
+      messageSuccess(`"${camp.name}" updated successfully`);
       setIsModalOpen(false);
     } catch (error) {
-      console.log(error);
+      messageError(error.message);
     } finally {
       setSubmitLoading(false);
     }

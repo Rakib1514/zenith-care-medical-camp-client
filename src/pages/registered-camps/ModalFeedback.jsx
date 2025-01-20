@@ -1,4 +1,4 @@
-import { Button, Form, Modal, Rate } from "antd";
+import { Button, Form, message, Modal, Rate } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import PropTypes from "prop-types";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
@@ -45,12 +45,19 @@ const ModalFeedBack = ({ isModalOpen, setIsModalOpen, regCamp,refetch }) => {
     setIsModalOpen(false);
     refetch();
     // Todo: give a success modal thanks for feed back with auto close
-    alert("Thanks For your valuable feedback")
+    feedBackMessage()
    } catch (error) {
     console.log(error);
    } finally{
     setSubmitBtnLoading(false)
    }
+  };
+
+  const feedBackMessage = () => {
+    message.success({
+      content: `Thanks For Your Feedback. ❤️`,
+      duration: 2,
+    });
   };
 
   return (

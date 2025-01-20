@@ -2,6 +2,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import { Avatar, Dropdown, Space } from "antd";
 import NavbarLoading from "./loading-components/NavbarLoading";
+import { messageSuccess } from "../Utils/messageAlert";
 
 const Navbar = () => {
   const { loading, user, userSignOut } = useAuth();
@@ -59,12 +60,13 @@ const Navbar = () => {
     },
   ];
 
-  const handleNavigate = ({ key }) => {
+  const handleNavigate = async ({ key }) => {
     const selectItem = items.find((item) => item.key === key);
 
     if (selectItem && selectItem.path) {
       if (selectItem.path === "/sign-out") {
-        handleSignOut();
+        await handleSignOut();
+        messageSuccess("Signed Out")
         return;
       }
       navigate(selectItem.path);

@@ -7,6 +7,7 @@ import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { messageSuccess } from "../../Utils/messageAlert";
 
 const SignUp = () => {
   const [photoURL, setPhotoURL] = useState("");
@@ -41,7 +42,7 @@ const SignUp = () => {
       if (!res.data.insertedId) {
         console.log("failed to post userInfo to DB");
       }
-
+      messageSuccess(`Hello, "${values.name}". Welcome To Zenith Care Family`)
       navigate("/");
       form.resetFields();
     } catch (error) {

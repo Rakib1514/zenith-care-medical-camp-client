@@ -21,8 +21,6 @@ const UserFeedback = () => {
     },
   });
 
-  console.log(feedback);
-
   if (isLoading) {
     return <h2>Loading in feedback</h2>;
   }

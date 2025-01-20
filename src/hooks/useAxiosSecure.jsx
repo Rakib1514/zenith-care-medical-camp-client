@@ -7,7 +7,7 @@ const axiosSecure = axios.create({
 });
 
 const useAxiosSecure = () => {
-  const { userSignOut } = useAuth();
+  const { userSignOut, setLoading } = useAuth();
   const navigate = useNavigate();
 
   axiosSecure.interceptors.request.use(
@@ -30,6 +30,7 @@ const useAxiosSecure = () => {
       if (statusCode === 401 || statusCode === 403) {
         await userSignOut();
         navigate("/join-us/sign-in");
+        setLoading(false);
       }
 
       return Promise.reject(error);

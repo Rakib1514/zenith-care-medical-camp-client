@@ -6,6 +6,7 @@ import { useState } from "react";
 import axiosPublic from "../../Utils/axiosPublic";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
+import { messageError, messageSuccess } from "../../Utils/messageAlert";
 
 const AddCamp = () => {
   const [submitLoading, setSubmitLoading] = useState(false);
@@ -27,14 +28,16 @@ const AddCamp = () => {
 
     const res = await axiosSecure.post("/camps", newCampData);
     if (!res.data.insertedId) {
+      messageError('Camp Add Failed')
       throw new Error("data post failed to server");
     }
 
     // Success flow
-    alert(`${values.name} camp added for the date ${values.timeFrom}`)
+    messageSuccess(`${values.name} Camp Added`);
     form.resetFields();
     setSubmitLoading(false);
   };
+
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };

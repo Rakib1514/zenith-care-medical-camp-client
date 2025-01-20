@@ -5,8 +5,9 @@ import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import { useState } from "react";
 import dayjs from "dayjs";
-import { Badge, Button, Popconfirm } from "antd";
+import { Badge, Button, message, Popconfirm } from "antd";
 import ModalFeedBack from "./ModalFeedBack";
+import { messageSuccess } from "../../Utils/messageAlert";
 
 const UserRegCampRow = ({ row, page, rowsPerPage, idx, refetch }) => {
   const [cancelBtnLoading, setCancelBtnLoading] = useState(false);
@@ -22,9 +23,8 @@ const UserRegCampRow = ({ row, page, rowsPerPage, idx, refetch }) => {
       if (res.data.deletedCount <= 0) {
         throw new Error("Cancellation failed. delete count 0");
       }
-
+      messageSuccess('Registration Canceled')
       refetch();
-      alert("deleted");
     } catch (error) {
       console.log(error);
     } finally {
@@ -105,11 +105,11 @@ const UserRegCampRow = ({ row, page, rowsPerPage, idx, refetch }) => {
       <TableCell align="left">
         {row?.feedbackStatus ? (
           <Badge
-          count={"Submitted"}
-          style={{
-            backgroundColor: "gray",
-          }}
-        />
+            count={"Submitted"}
+            style={{
+              backgroundColor: "gray",
+            }}
+          />
         ) : (
           <Button
             disabled={

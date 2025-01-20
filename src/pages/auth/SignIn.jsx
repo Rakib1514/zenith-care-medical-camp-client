@@ -3,9 +3,11 @@ import { Button, Checkbox, Form, Input } from "antd";
 import animation from "../../assets/sign-in-animation.json";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import { useState } from "react";
 
 const SignIn = () => {
   const { userSignIn, loading, setLoading } = useAuth();
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -13,6 +15,7 @@ const SignIn = () => {
 
   const onFinish = async (values) => {
     try {
+      setErrorMessage("");
       const result = await userSignIn(values.email, values.password);
       if (!result.user) {
         setLoading(false);
@@ -22,7 +25,15 @@ const SignIn = () => {
       navigate(from);
     } catch (error) {
       setLoading(false);
-      console.log(error);
+
+      if (
+        error.message === "Firebase: Error (auth/invalid-credential)." ||
+        error.message === "Firebase: Error (auth/invalid-email)."
+      ) {
+        setErrorMessage("Email or Password incorrect");
+      } else {
+        setErrorMessage(error.message);
+      }
     }
   };
   const onFinishFailed = (errorInfo) => {
@@ -82,6 +93,11 @@ const SignIn = () => {
         <Form.Item name="remember" valuePropName="checked" label={null}>
           <Checkbox>Remember me</Checkbox>
         </Form.Item>
+        {errorMessage && (
+          <Form.Item label={null}>
+            <p className="text-red-700">{errorMessage}</p>
+          </Form.Item>
+        )}
 
         <Form.Item label={null}>
           <Button

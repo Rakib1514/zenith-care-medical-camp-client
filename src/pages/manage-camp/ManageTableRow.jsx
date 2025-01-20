@@ -6,6 +6,7 @@ import dayjs from "dayjs";
 import { Button, Popconfirm } from "antd";
 import UpdateCampModal from "./UpdateCampModal";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { messageError, messageSuccess } from "../../Utils/messageAlert";
 
 const ManageTableRow = ({ row, refetch, idx, rowsPerPage, page }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -25,9 +26,9 @@ const ManageTableRow = ({ row, refetch, idx, rowsPerPage, page }) => {
       // Success Flow
 
       refetch();
-      alert("deleted");
+      messageSuccess(`${row.name} Removed`);
     } catch (error) {
-      console.log(error);
+      messageError(error.message);
     } finally {
       setDeleteBtnLoading(false);
     }

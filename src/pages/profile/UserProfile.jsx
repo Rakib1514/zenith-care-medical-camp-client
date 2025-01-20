@@ -3,6 +3,7 @@ import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { Form, Input, Button, InputNumber } from "antd";
 import { useState } from "react";
+import { messageSuccess } from "../../Utils/messageAlert";
 
 const UserProfile = () => {
   const [toggleForm, setToggleForm] = useState(false);
@@ -31,6 +32,7 @@ const UserProfile = () => {
       }
       refetch();
       setToggleForm(false);
+      messageSuccess(`Profile Updated`);
     } catch (error) {
       console.log(error);
     } finally {
