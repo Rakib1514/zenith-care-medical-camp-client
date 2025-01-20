@@ -8,6 +8,7 @@ import useAuth from "../../hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { messageSuccess } from "../../Utils/messageAlert";
+import GoogleSignIn from "./GoogleSignIn";
 
 const SignUp = () => {
   const [photoURL, setPhotoURL] = useState("");
@@ -42,7 +43,7 @@ const SignUp = () => {
       if (!res.data.insertedId) {
         console.log("failed to post userInfo to DB");
       }
-      messageSuccess(`Hello, "${values.name}". Welcome To Zenith Care Family`)
+      messageSuccess(`Hello, "${values.name}". Welcome To Zenith Care Family`);
       navigate("/");
       form.resetFields();
     } catch (error) {
@@ -90,139 +91,145 @@ const SignUp = () => {
       <div className="row-start-2 md:row-auto">
         <Lottie className="h-96" animationData={animation} loop={true} />
       </div>
-      <Form
-        form={form}
-        name="basic"
-        labelCol={{
-          span: 8,
-        }}
-        wrapperCol={{
-          span: 16,
-        }}
-        style={{
-          maxWidth: 600,
-        }}
-        initialValues={{
-          remember: true,
-        }}
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-        autoComplete="off"
-      >
-        <Form.Item
-          label="Name"
-          name="name"
-          rules={[
-            {
-              required: true,
-              message: "Please input your Name!",
-            },
-          ]}
+      <div>
+        <div className="flex justify-center">
+        <GoogleSignIn />
+        </div>
+        <div className="divider">OR</div>
+        <Form
+          form={form}
+          name="basic"
+          labelCol={{
+            span: 8,
+          }}
+          wrapperCol={{
+            span: 16,
+          }}
+          style={{
+            maxWidth: 600,
+          }}
+          initialValues={{
+            remember: true,
+          }}
+          onFinish={onFinish}
+          onFinishFailed={onFinishFailed}
+          autoComplete="off"
         >
-          <Input />
-        </Form.Item>
-
-        <Form.Item
-          label="Email"
-          name="email"
-          rules={[
-            {
-              required: true,
-              message: "Please input your email!",
-            },
-            {
-              type: "email",
-              message: "Please input valid email!",
-            },
-          ]}
-        >
-          <Input type="email" />
-        </Form.Item>
-
-        <Form.Item
-          label="Password"
-          name="password"
-          rules={[
-            {
-              required: true,
-              message: "Please input your password!",
-            },
-            {
-              min: 8,
-              message: "Password must be at least 8 characters long.",
-            },
-            {
-              pattern: /^(?=.*[a-z])/,
-              message: "Password must contain at least one lowercase letter.",
-            },
-            {
-              pattern: /^(?=.*\d)/,
-              message: "Password must contain at least one number.",
-            },
-            {
-              pattern: /^(?=.*[A-Z])/,
-              message:
-                "Password must contain at least one one uppercase letter.",
-            },
-          ]}
-        >
-          <Input.Password />
-        </Form.Item>
-
-        <Form.Item
-          label="Upload"
-          name={"image"}
-          rules={[
-            {
-              required: true,
-              message: "Please upload an image!",
-            },
-          ]}
-        >
-          <Upload
-            customRequest={handleImageUpload}
-            listType="picture-card"
-            maxCount={1}
+          <Form.Item
+            label="Name"
+            name="name"
+            rules={[
+              {
+                required: true,
+                message: "Please input your Name!",
+              },
+            ]}
           >
-            <button
-              style={{
-                border: 0,
-                background: "none",
-              }}
-              type="button"
+            <Input />
+          </Form.Item>
+
+          <Form.Item
+            label="Email"
+            name="email"
+            rules={[
+              {
+                required: true,
+                message: "Please input your email!",
+              },
+              {
+                type: "email",
+                message: "Please input valid email!",
+              },
+            ]}
+          >
+            <Input type="email" />
+          </Form.Item>
+
+          <Form.Item
+            label="Password"
+            name="password"
+            rules={[
+              {
+                required: true,
+                message: "Please input your password!",
+              },
+              {
+                min: 8,
+                message: "Password must be at least 8 characters long.",
+              },
+              {
+                pattern: /^(?=.*[a-z])/,
+                message: "Password must contain at least one lowercase letter.",
+              },
+              {
+                pattern: /^(?=.*\d)/,
+                message: "Password must contain at least one number.",
+              },
+              {
+                pattern: /^(?=.*[A-Z])/,
+                message:
+                  "Password must contain at least one one uppercase letter.",
+              },
+            ]}
+          >
+            <Input.Password />
+          </Form.Item>
+
+          <Form.Item
+            label="Upload"
+            name={"image"}
+            rules={[
+              {
+                required: true,
+                message: "Please upload an image!",
+              },
+            ]}
+          >
+            <Upload
+              customRequest={handleImageUpload}
+              listType="picture-card"
+              maxCount={1}
             >
-              <PlusOutlined />
-              <div
+              <button
                 style={{
-                  marginTop: 8,
+                  border: 0,
+                  background: "none",
                 }}
+                type="button"
               >
-                Upload Your Image
-              </div>
-            </button>
-          </Upload>
-        </Form.Item>
+                <PlusOutlined />
+                <div
+                  style={{
+                    marginTop: 8,
+                  }}
+                >
+                  Upload Your Image
+                </div>
+              </button>
+            </Upload>
+          </Form.Item>
 
-        <Form.Item label={null}>
-          <Button
-            type="primary"
-            htmlType="submit"
-            style={{ backgroundColor: "#009045" }}
-            loading={loading}
-            // disabled={photoURL ? false : true}
-          >
-            Sign Up
-          </Button>
-        </Form.Item>
-        <Form.Item label={null}>
-          <Link to={"/join-us/sign-in"}>
-            <p className="hover:text-primary underline">
-              Already Have an account! Sign-in
-            </p>
-          </Link>
-        </Form.Item>
-        <p className="text-red-700 text-xs">{message && message}</p>
-      </Form>
+          <Form.Item label={null}>
+            <Button
+              type="primary"
+              htmlType="submit"
+              style={{ backgroundColor: "#009045" }}
+              loading={loading}
+              // disabled={photoURL ? false : true}
+            >
+              Sign Up
+            </Button>
+          </Form.Item>
+          <Form.Item label={null}>
+            <Link to={"/join-us/sign-in"}>
+              <p className="hover:text-primary underline">
+                Already Have an account! Sign-in
+              </p>
+            </Link>
+          </Form.Item>
+          <p className="text-red-700 text-xs">{message && message}</p>
+        </Form>
+      </div>
     </div>
   );
 };
