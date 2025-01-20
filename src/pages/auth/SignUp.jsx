@@ -93,7 +93,7 @@ const SignUp = () => {
       </div>
       <div>
         <div className="flex justify-center">
-        <GoogleSignIn />
+          <GoogleSignIn />
         </div>
         <div className="divider">OR</div>
         <Form
@@ -213,9 +213,8 @@ const SignUp = () => {
             <Button
               type="primary"
               htmlType="submit"
-              style={{ backgroundColor: "#009045" }}
+              className="bg-primary"
               loading={loading}
-              // disabled={photoURL ? false : true}
             >
               Sign Up
             </Button>

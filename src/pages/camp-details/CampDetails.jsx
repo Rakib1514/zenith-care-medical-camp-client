@@ -18,9 +18,12 @@ import useAuth from "../../hooks/useAuth";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import HeadingLoading from "../../components/loading-components/HeadingLoading";
 import DetailsLoading from "../../components/loading-components/DetailsLoading";
+import ConfirmModal from "./ConfirmModal";
 
 const CampDetails = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [confirmModal, setConfirmModal] = useState(false);
+  const [insertedId, setInsertedId] = useState('')
 
   const { user } = useAuth();
   const navigate = useNavigate();
@@ -145,10 +148,13 @@ const CampDetails = () => {
       </div>
       <RegisterCampModal
         setIsModalOpen={setIsModalOpen}
+        setConfirmModal={setConfirmModal}
         isModalOpen={isModalOpen}
         camp={camp}
         refetch={refetch}
+        setInsertedId={setInsertedId}
       />
+      <ConfirmModal confirmModal={confirmModal} setConfirmModal={setConfirmModal} camp={camp} insertedId={insertedId}/>
     </div>
   );
 };

@@ -110,9 +110,7 @@ const SignIn = () => {
               type="primary"
               htmlType="submit"
               loading={loading}
-              style={{
-                backgroundColor: "#009045",
-              }}
+              className="bg-primary"
             >
               Sign in
             </Button>

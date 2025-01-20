@@ -22,7 +22,7 @@ import dayjs from "dayjs";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useState } from "react";
 
-const RegisterCampModal = ({ setIsModalOpen, isModalOpen, camp, refetch }) => {
+const RegisterCampModal = ({ setIsModalOpen, isModalOpen, camp, refetch, setConfirmModal,setInsertedId }) => {
   const [regBtnLoading, setRegBtnLoading] = useState(false);
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
@@ -62,15 +62,15 @@ const RegisterCampModal = ({ setIsModalOpen, isModalOpen, camp, refetch }) => {
         throw new Error("inserted Id not returned");
       }
 
-      //! success flow
-      alert(`Registration success. Reg Id: ${res?.data?.insertedId}`);
 
+      //! success flow
+      setInsertedId(res.data.insertedId);
       form.resetFields();
       setIsModalOpen(false);
       await axiosSecure.patch(`/participant-count/inc/${_id}`);
       refetch();
       // todo: extra work.
-      // show a modal to pay now or latter. or go to registered camp
+      setConfirmModal(true);
     } catch (error) {
       console.log(error);
     } finally {
@@ -191,7 +191,6 @@ const RegisterCampModal = ({ setIsModalOpen, isModalOpen, camp, refetch }) => {
           <Select
             prefix={<BsGenderAmbiguous />}
             placeholder="Gender"
-            
             options={[
               {
                 value: "male",
@@ -259,6 +258,8 @@ RegisterCampModal.propTypes = {
   handleRegisterCamp: PropTypes.func,
   camp: PropTypes.object,
   refetch: PropTypes.func,
+  setConfirmModal: PropTypes.func,
+  setInsertedId: PropTypes.func,
 };
 
 export default RegisterCampModal;
