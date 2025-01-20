@@ -28,7 +28,7 @@ const Navbar = () => {
       {user ? (
         <>
           <li>
-            <NavLink to="/dashboard/profile">Profile</NavLink>
+            <NavLink to="/dashboard">Dashboard</NavLink>
           </li>
         </>
       ) : (

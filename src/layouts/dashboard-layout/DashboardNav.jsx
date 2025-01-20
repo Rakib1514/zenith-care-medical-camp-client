@@ -66,6 +66,9 @@ const DashboardNav = ({ setOpen, open }) => {
       <li onClick={drawerClose}>
         <NavLink to={"/"}>Home</NavLink>
       </li>
+      <li onClick={drawerClose}>
+        <NavLink to={"/camps"}>All Camps</NavLink>
+      </li>
     </>
   );
 };
