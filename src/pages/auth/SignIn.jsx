@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { useState } from "react";
 import GoogleSignIn from "./GoogleSignIn";
+import { Helmet } from "react-helmet-async";
 
 const SignIn = () => {
   const { userSignIn, loading, setLoading } = useAuth();
@@ -44,6 +45,7 @@ const SignIn = () => {
 
   return (
     <div className="grid md:grid-cols-2 grid-cols-1 overflow-x-hidden">
+      <Helmet title="Zenith | Sign In"/>
       <div className="row-start-2 md:row-auto">
         <Lottie className="h-96" animationData={animation} loop={true} />
       </div>

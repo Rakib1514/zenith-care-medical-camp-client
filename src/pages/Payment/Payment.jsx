@@ -5,6 +5,7 @@ import CheckoutForm from "./CheckoutForm";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 // TODO: add publishable key
 const stripePromise = loadStripe(import.meta.env.VITE_PK);
@@ -27,6 +28,7 @@ const Payment = () => {
 
   return (
     <div>
+      <Helmet title={`Payment | ${camp.campName}`}/>
       <SectionHeading heading="Secure Your Spot with Ease" subHeading="Complete Your Payment Seamlessly Using Your Card" />
 
       <div className="max-w-xl mx-auto mb-6 ">

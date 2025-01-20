@@ -15,6 +15,7 @@ import {
 import usePayHistory from "../../hooks/usePayHistory";
 import { useParams } from "react-router-dom";
 import useMyRegCampsData from "../../hooks/useMyRegCampsData";
+import { Helmet } from "react-helmet-async";
 
 const Analytics = () => {
   const { uid } = useParams();
@@ -22,8 +23,8 @@ const Analytics = () => {
   const {myRegCampsData, isLoading: regLoading} =useMyRegCampsData(uid)
 
   const data = [
-    { name: "Total Registered", value: myRegCampsData.length },
-    { name: "Total Joined", value: myPayHistory.length },
+    { name: "Total Registered", value: myRegCampsData?.length || 0},
+    { name: "Total Joined", value: myPayHistory?.length || 0},
   ];
   const COLORS = ["#0076BA", "#00C49F"];
 
@@ -33,6 +34,7 @@ const Analytics = () => {
 
   return (
     <div className="px-4">
+      <Helmet title="Zenith | Analytics"/>
       <SectionHeading
         heading="Your Analytics"
         subHeading="Explore detailed insights from your camp activities."

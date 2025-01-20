@@ -10,6 +10,7 @@ import axiosPublic from "../../Utils/axiosPublic";
 import { FaColumns } from "react-icons/fa";
 import { BiColumns } from "react-icons/bi";
 import { ScrollRestoration } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 const { Search } = Input;
 
 const Camps = () => {
@@ -143,6 +144,7 @@ const Camps = () => {
     <div>
       <div className="container mx-auto px-6 mb-24">
         <div>
+          <Helmet title="Zenith | All Available Camps"/>
           <SectionHeading
             subHeading="Find the Perfect Camp for Your Health and Wellness"
             heading="Explore Our Camps"

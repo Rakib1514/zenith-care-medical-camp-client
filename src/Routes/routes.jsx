@@ -17,11 +17,13 @@ import ManageCamps from "../pages/manage-camp/ManageCamps";
 import ManageRegCamps from "../pages/manage-reg-camps/ManageRegCamps";
 import UserProfile from "../pages/profile/UserProfile";
 import Analytics from "../pages/Analytics/Analytics";
+import Error from "../pages/error-page/Error";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    errorElement: <Error/>,
     children: [
       {
         index: true,

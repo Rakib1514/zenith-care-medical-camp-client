@@ -9,6 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { messageSuccess } from "../../Utils/messageAlert";
 import GoogleSignIn from "./GoogleSignIn";
+import { Helmet } from "react-helmet-async";
 
 const SignUp = () => {
   const [photoURL, setPhotoURL] = useState("");
@@ -88,6 +89,7 @@ const SignUp = () => {
 
   return (
     <div className="grid md:grid-cols-2 grid-cols-1 overflow-x-hidden">
+      <Helmet title="Zenith | Sign Up"/>
       <div className="row-start-2 md:row-auto">
         <Lottie className="h-96" animationData={animation} loop={true} />
       </div>

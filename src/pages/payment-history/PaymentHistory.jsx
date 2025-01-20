@@ -14,6 +14,7 @@ import dayjs from "dayjs";
 import { Badge, Button } from "antd";
 import { useState } from "react";
 import Search from "antd/es/input/Search";
+import { Helmet } from "react-helmet-async";
 
 const PaymentHistory = () => {
   const { uid } = useParams();
@@ -54,6 +55,7 @@ const PaymentHistory = () => {
 
   return (
     <>
+    <Helmet title={`Zenith | Payment History`}/>
       <div>
         <SectionHeading
           heading="Registered camps"

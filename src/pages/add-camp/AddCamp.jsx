@@ -7,6 +7,7 @@ import axiosPublic from "../../Utils/axiosPublic";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
 import { messageError, messageSuccess } from "../../Utils/messageAlert";
+import { Helmet } from "react-helmet-async";
 
 const AddCamp = () => {
   const [submitLoading, setSubmitLoading] = useState(false);
@@ -73,6 +74,7 @@ const AddCamp = () => {
 
   return (
     <div>
+      <Helmet title="Zenith | Add New Camp"/>
       <SectionHeading
         heading="Add a New Camp"
         subHeading="Create and share essential details to organize your next medical camp."

@@ -19,6 +19,7 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 import HeadingLoading from "../../components/loading-components/HeadingLoading";
 import DetailsLoading from "../../components/loading-components/DetailsLoading";
 import ConfirmModal from "./ConfirmModal";
+import { Helmet } from "react-helmet-async";
 
 const CampDetails = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -81,6 +82,7 @@ const CampDetails = () => {
   return (
     <div>
       <div className="container mx-auto min-h-svh font-roboto">
+        <Helmet title={`Zenith | ${camp.name}`}/>
         <ScrollRestoration />
         <SectionHeading heading={name} subHeading="Join Here" />
         <Link to={"/camps"}>

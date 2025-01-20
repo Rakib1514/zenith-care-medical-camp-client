@@ -12,6 +12,7 @@ import useCampsData from "../../hooks/useCampsData";
 import ManageTableRow from "./ManageTableRow";
 import Search from "antd/es/input/Search";
 import { Button } from "antd";
+import { Helmet } from "react-helmet-async";
 
 const ManageCamps = () => {
   const [page, setPage] = useState(0);
@@ -46,6 +47,7 @@ const ManageCamps = () => {
 
   return (
     <>
+      <Helmet title={`Zenith | Manage Camps`} />
       <div>
         <SectionHeading
           heading="Manage Camps"

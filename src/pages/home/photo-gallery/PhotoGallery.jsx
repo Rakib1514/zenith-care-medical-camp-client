@@ -15,7 +15,6 @@ const PhotoGallery = () => {
   const scaleUp3 = useTransform(scrollYProgress, [0, 1], [1, 2]);
   const scaleUp4 = useTransform(scrollYProgress, [0, 1], [1, 2.2]);
   const scaleUp5 = useTransform(scrollYProgress, [0, 1], [1, 2.4]);
-  //
 
   return (
     <div>

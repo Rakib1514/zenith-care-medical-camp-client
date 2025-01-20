@@ -13,6 +13,7 @@ import SectionHeading from "../../components/SectionHeading";
 import ManageRegCampAdminRow from "./ManageRegCampAdminRow";
 import Search from "antd/es/input/Search";
 import { Button } from "antd";
+import { Helmet } from "react-helmet-async";
 
 const ManageRegCamps = () => {
   const [page, setPage] = useState(0);
@@ -51,6 +52,7 @@ const ManageRegCamps = () => {
 
   return (
     <div>
+      <Helmet title={`Zenith | Manage Registered Camps`}/>
       <div>
         <SectionHeading
           heading="Registered camps"
