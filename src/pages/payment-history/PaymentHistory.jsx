@@ -75,6 +75,7 @@ const PaymentHistory = () => {
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
               <TableRow>
+                <TableCell>#</TableCell>
                 <TableCell>Camp Name</TableCell>
                 <TableCell align="left">Fee</TableCell>
                 <TableCell align="left">Payment Date</TableCell>

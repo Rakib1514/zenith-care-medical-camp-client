@@ -26,7 +26,11 @@ const Navbar = () => {
       </li>
 
       {user ? (
-        <></>
+        <>
+          <li>
+            <NavLink to="/dashboard/profile">Profile</NavLink>
+          </li>
+        </>
       ) : (
         <>
           <li>
@@ -66,13 +70,12 @@ const Navbar = () => {
     if (selectItem && selectItem.path) {
       if (selectItem.path === "/sign-out") {
         await handleSignOut();
-        messageSuccess("Signed Out")
+        messageSuccess("Signed Out");
         return;
       }
       navigate(selectItem.path);
     }
   };
-
 
   if (loading) {
     return <NavbarLoading />;

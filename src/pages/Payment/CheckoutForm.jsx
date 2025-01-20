@@ -6,11 +6,14 @@ import PropTypes from "prop-types";
 import useAuth from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
+import { messageSuccess } from "../../Utils/messageAlert";
+
 
 const CheckoutForm = ({ camp }) => {
   const [error, setError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
   const [btnLoading, setBtnLoading] = useState(false);
+
   const stripe = useStripe();
   const elements = useElements();
   const axiosSecure = useAxiosSecure();
@@ -27,30 +30,30 @@ const CheckoutForm = ({ camp }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    
+
     try {
-      setBtnLoading(true)
+      setBtnLoading(true);
       if (!stripe || !elements) {
         return;
       }
-  
+
       const card = elements.getElement(CardElement);
-  
+
       if (!card) {
         return;
       }
-  
+
       const { error, paymentMethod } = await stripe.createPaymentMethod({
         type: "card",
         card,
       });
-  
+
       if (error) {
         setError(error.message);
       } else {
         setError("");
       }
-  
+
       // confirm payment
       const { paymentIntent, error: confirmsError } =
         await stripe.confirmCardPayment(clientSecret, {
@@ -62,7 +65,7 @@ const CheckoutForm = ({ camp }) => {
             },
           },
         });
-  
+
       if (confirmsError) {
         setError(confirmsError.message);
       } else {
@@ -79,34 +82,36 @@ const CheckoutForm = ({ camp }) => {
           };
           //! Success Flow
           const res = await axiosSecure.post(`/transactions`, payInfo);
-  
+
           if (!res.data.insertedId) {
             setError(
               "Payment not Confirmed. Please contact customer care if the amount deducted from your account"
             );
             return;
           }
-  
-          const statusRes = await axiosSecure.patch(`/set-Payment-status/${_id}`);
-          
+
+          const statusRes = await axiosSecure.patch(
+            `/set-Payment-status/${_id}`
+          );
+
           if (!statusRes.data.modifiedCount) {
             setError(
               "payment status not confirmed. Please contact To customer Care"
             );
             return;
           }
-  
+          messageSuccess(`Payment Success. trxID: ${paymentIntent.id}`)
           navigate(`/dashboard/registered-camps/${user.uid}`);
-          alert("paid");
         }
       }
     } catch (error) {
       setError(error.message);
-    } finally{
-      setBtnLoading(false)
+    } finally {
+      setBtnLoading(false);
     }
-   
   };
+
+  
 
   return (
     <form onSubmit={handleSubmit} className="max-w-xl mx-auto">
@@ -145,7 +150,7 @@ const CheckoutForm = ({ camp }) => {
         {btnLoading && (
           <div className="flex items-center mt-3 gap-1">
             <span className="loading loading-spinner loading-sm text-primary " />{" "}
-            <span>Payment Processing</span> 
+            <span>Payment Processing</span>
           </div>
         )}
         <p className="text-red-600 font-semibold mt-4">{error}</p>

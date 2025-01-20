@@ -20,9 +20,6 @@ const ManageRegCamps = () => {
   const [allRegCampData, setAllRegCampData] = useState([]);
   const axiosSecure = useAxiosSecure();
 
-  console.log("Page", page);
-  console.log("Rows per page", rowsPerPage);
-
   const { data, isLoading, refetch } = useQuery({
     queryKey: ["all-reg-camps"],
     queryFn: async () => {

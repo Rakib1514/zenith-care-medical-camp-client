@@ -42,6 +42,7 @@ ConfirmModal.propTypes = {
   confirmModal: PropTypes.bool,
   setConfirmModal: PropTypes.func,
   camp: PropTypes.object,
+  insertedId: PropTypes.string,
 };
 
 export default ConfirmModal;
