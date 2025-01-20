@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import { Form, Input, Button, InputNumber } from "antd";
+import { Form, Input, Button, InputNumber, Skeleton } from "antd";
 import { useState } from "react";
 import { messageSuccess } from "../../Utils/messageAlert";
 import { Helmet } from "react-helmet-async";
@@ -42,12 +42,15 @@ const UserProfile = () => {
   };
 
   if ((loading, isLoading)) {
-    return <h2>Loading...</h2>;
+    return <div>
+      <div className="skeleton w-full h-60"/>
+      <Skeleton active className="mt-12"/>
+    </div>;
   }
 
   return (
     <div className="min-h-svh">
-      <Helmet title={`Zenith | ${user.displayName}`}/>
+      <Helmet title={`Zenith | ${user.displayName}`} />
       <div className="max-w-3xl mx-auto">
         <div className="max-h-52 relative">
           <img

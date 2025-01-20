@@ -13,6 +13,7 @@ import ManageTableRow from "./ManageTableRow";
 import Search from "antd/es/input/Search";
 import { Button } from "antd";
 import { Helmet } from "react-helmet-async";
+import Loading from "../../components/loading-components/loading";
 
 const ManageCamps = () => {
   const [page, setPage] = useState(0);
@@ -42,7 +43,7 @@ const ManageCamps = () => {
   };
 
   if (isLoading) {
-    return <h2>Loading in admin manage camps</h2>;
+    return <Loading/>;
   }
 
   return (

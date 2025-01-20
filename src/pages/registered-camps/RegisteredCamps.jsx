@@ -15,6 +15,7 @@ import UserRegCampRow from "./UserRegCampRow";
 import Search from "antd/es/input/Search";
 import { Button } from "antd";
 import { Helmet } from "react-helmet-async";
+import Loading from "../../components/loading-components/loading";
 
 const RegisteredCamps = () => {
   const [page, setPage] = useState(0);
@@ -50,7 +51,7 @@ const RegisteredCamps = () => {
   };
 
   if (isLoading) {
-    return <h2>Loading in My Registered camps</h2>;
+    return <Loading/>;
   }
 
   return (

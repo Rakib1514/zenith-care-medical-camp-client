@@ -16,25 +16,31 @@ import usePayHistory from "../../hooks/usePayHistory";
 import { useParams } from "react-router-dom";
 import useMyRegCampsData from "../../hooks/useMyRegCampsData";
 import { Helmet } from "react-helmet-async";
+import { Skeleton } from "antd";
 
 const Analytics = () => {
   const { uid } = useParams();
   const { myPayHistory, isLoading } = usePayHistory(uid);
-  const {myRegCampsData, isLoading: regLoading} =useMyRegCampsData(uid)
+  const { myRegCampsData, isLoading: regLoading } = useMyRegCampsData(uid);
 
   const data = [
-    { name: "Total Registered", value: myRegCampsData?.length || 0},
-    { name: "Total Joined", value: myPayHistory?.length || 0},
+    { name: "Total Registered", value: myRegCampsData?.length || 0 },
+    { name: "Total Joined", value: myPayHistory?.length || 0 },
   ];
   const COLORS = ["#0076BA", "#00C49F"];
 
   if (isLoading || regLoading) {
-    return <h2>Loading analytics...</h2>;
+    return (
+      <div>
+        <div className="skeleton w-full h-60" />
+        <Skeleton active className="mt-12" />
+      </div>
+    );
   }
 
   return (
     <div className="px-4">
-      <Helmet title="Zenith | Analytics"/>
+      <Helmet title="Zenith | Analytics" />
       <SectionHeading
         heading="Your Analytics"
         subHeading="Explore detailed insights from your camp activities."

@@ -15,6 +15,7 @@ import { Badge, Button } from "antd";
 import { useState } from "react";
 import Search from "antd/es/input/Search";
 import { Helmet } from "react-helmet-async";
+import Loading from "../../components/loading-components/loading";
 
 const PaymentHistory = () => {
   const { uid } = useParams();
@@ -50,7 +51,7 @@ const PaymentHistory = () => {
   };
 
   if (isLoading) {
-    return <h2>Loading in history.....</h2>;
+    return <Loading/>;
   }
 
   return (

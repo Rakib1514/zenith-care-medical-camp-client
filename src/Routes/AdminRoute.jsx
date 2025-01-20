@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import useAdmin from "../hooks/useAdmin";
 import useAuth from "../hooks/useAuth";
 import { Navigate, useLocation } from "react-router-dom";
+import DetailsLoading from "../components/loading-components/DetailsLoading";
 
 const AdminRoute = ({ children }) => {
   const { user, userSignOut, loading } = useAuth();
@@ -9,7 +10,7 @@ const AdminRoute = ({ children }) => {
   const location = useLocation();
 
   if (isLoading || loading) {
-    return <h2>Loading in admin private route..</h2>;
+    return <DetailsLoading/>;
   }
 
   if (user && isAdmin) {

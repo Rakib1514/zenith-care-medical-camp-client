@@ -10,11 +10,11 @@ const PhotoGallery = () => {
     offset: ["start start", "end end"],
   });
 
-  const scaleUp1 = useTransform(scrollYProgress, [0, 1], [1, 1.5]);
-  const scaleUp2 = useTransform(scrollYProgress, [0, 1], [1, 1.8]);
-  const scaleUp3 = useTransform(scrollYProgress, [0, 1], [1, 2]);
-  const scaleUp4 = useTransform(scrollYProgress, [0, 1], [1, 2.2]);
-  const scaleUp5 = useTransform(scrollYProgress, [0, 1], [1, 2.4]);
+  const scaleUp1 = useTransform(scrollYProgress, [0, 1], [1, 2.5]);
+  const scaleUp2 = useTransform(scrollYProgress, [0, 1], [1, 2.8]);
+  const scaleUp3 = useTransform(scrollYProgress, [0, 1], [1, 3]);
+  const scaleUp4 = useTransform(scrollYProgress, [0, 1], [1, 3.2]);
+  const scaleUp5 = useTransform(scrollYProgress, [0, 1], [1, 3.4]);
 
   return (
     <div>

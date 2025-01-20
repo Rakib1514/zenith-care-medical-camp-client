@@ -5,6 +5,7 @@ import useAdmin from "../../hooks/useAdmin";
 import DashboardNav from "./DashboardNav";
 import { AiOutlineMenuUnfold } from "react-icons/ai";
 import { FaRegWindowClose } from "react-icons/fa";
+import DetailsLoading from "../../components/loading-components/DetailsLoading";
 
 const DashboardLayout = () => {
   const { isLoading: isLoadingAdmin } = useAdmin();
@@ -19,7 +20,7 @@ const DashboardLayout = () => {
   };
 
   if(isLoadingAdmin){
-    return <h2>loading for is Admin</h2>
+    return <DetailsLoading/>
   }
 
   return (

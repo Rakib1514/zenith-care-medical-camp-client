@@ -47,7 +47,7 @@ const UserFeedback = () => {
           }}
           pagination={true}
           modules={[EffectCoverflow, Pagination]}
-          className="w-2/3"
+          className="lg:w-2/3"
         >
           {feedback.map((el, idx) => (
             <SwiperSlide key={idx}>

@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { Helmet } from "react-helmet-async";
+import PaymentLoading from "../../components/loading-components/PaymentLoading";
 
 // TODO: add publishable key
 const stripePromise = loadStripe(import.meta.env.VITE_PK);
@@ -23,7 +24,7 @@ const Payment = () => {
   });
 
   if(isLoading){
-    return <h2>Loading in pAyment .......</h2>
+    return <PaymentLoading/>
   }
 
   return (
