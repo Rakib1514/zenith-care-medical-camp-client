@@ -15,6 +15,7 @@ Zenith is a comprehensive Medical Camp Management System (MCMS) built with the M
 ## Key Features  
 - Responsive design for mobile, tablet, and desktop.  
 - Authentication and authorization with secure user management.  
+- Multi level Security check for authentication and authorization
 - Better error handling for smoother functionality.  
 - Prevents multiple clicks with button loading states.  
 - Backend search functionality for efficient querying.  
@@ -22,7 +23,6 @@ Zenith is a comprehensive Medical Camp Management System (MCMS) built with the M
 - Separate loading page for improved user experience (UX).  
 - Secure payment integration with Stripe.  
 - Framer Motion animations for enhanced UX.  
--  
 
 
 ---
