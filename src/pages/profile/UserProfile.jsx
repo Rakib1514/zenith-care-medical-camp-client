@@ -117,29 +117,11 @@ const UserProfile = () => {
                 >
                   <Input placeholder="Enter your Photo URL" />
                 </Form.Item>
-                <Form.Item
-                  label="Age"
-                  name="age"
-                  rules={[
-                    {
-                      required: true,
-                      message: "Please input your age!",
-                    },
-                  ]}
-                >
+                <Form.Item label="Age" name="age">
                   <InputNumber placeholder="Enter your age" />
                 </Form.Item>
 
-                <Form.Item
-                  label="Address"
-                  name="address"
-                  rules={[
-                    {
-                      required: true,
-                      message: "Please input your address!",
-                    },
-                  ]}
-                >
+                <Form.Item label="Address" name="address">
                   <Input placeholder="Enter your address" />
                 </Form.Item>
 
@@ -161,7 +143,6 @@ const UserProfile = () => {
                 <Form.Item label="Emergency Contact" name="emergencyContact">
                   <Input placeholder="Enter emergency contact " />
                 </Form.Item>
-
 
                 <Form.Item label="Profile Cover" name="thumbnail">
                   <Input placeholder="Profile Cover Image URL" />

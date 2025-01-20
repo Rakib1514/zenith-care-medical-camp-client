@@ -16,6 +16,7 @@ import PaymentHistory from "../pages/payment-history/PaymentHistory";
 import ManageCamps from "../pages/manage-camp/ManageCamps";
 import ManageRegCamps from "../pages/manage-reg-camps/ManageRegCamps";
 import UserProfile from "../pages/profile/UserProfile";
+import Analytics from "../pages/Analytics/Analytics";
 
 const router = createBrowserRouter([
   {
@@ -63,7 +64,11 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        path: "profile/:uid",
+        index: true,
+        element: <Navigate to="/dashboard/profile" />,
+      },
+      {
+        path: "profile",
         element: <UserProfile />,
       },
       // Admin Routes
@@ -104,6 +109,10 @@ const router = createBrowserRouter([
       {
         path: "transactions/:uid",
         element: <PaymentHistory />,
+      },
+      {
+        path: "analytics/:uid",
+        element: <Analytics />,
       },
     ],
   },

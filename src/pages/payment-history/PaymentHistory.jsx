@@ -1,6 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -13,21 +11,14 @@ import SectionHeading from "../../components/SectionHeading";
 import dayjs from "dayjs";
 import { Badge } from "antd";
 import { useState } from "react";
+import usePayHistory from "../../hooks/usePayHistory";
 
 const PaymentHistory = () => {
   const { uid } = useParams();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
-  const axiosSecure = useAxiosSecure();
-
-  const { data: myPayHistory = [], isLoading } = useQuery({
-    queryKey: ["payment-history", uid],
-    queryFn: async () => {
-      const res = await axiosSecure.get(`/transactions/${uid}`);
-      return res.data;
-    },
-  });
+  const { myPayHistory, isLoading } = usePayHistory(uid);
 
   if (isLoading) {
     return <h2>Loading in history.....</h2>;

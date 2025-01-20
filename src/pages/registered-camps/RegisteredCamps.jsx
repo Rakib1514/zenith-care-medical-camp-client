@@ -1,6 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
 import {  useParams } from "react-router-dom";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -12,26 +10,19 @@ import TableRow from "@mui/material/TableRow";
 import { useState } from "react";
 import SectionHeading from "../../components/SectionHeading";
 import UserRegCampRow from "./UserRegCampRow";
+import useMyRegCampsData from "../../hooks/useMyRegCampsData";
 
 const RegisteredCamps = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const { uid } = useParams();
-  const axiosSecure = useAxiosSecure();
 
 
-  const {
-    data: myRegCampsData,
-    isLoading,
-    refetch,
-  } = useQuery({
-    queryKey: ["my-registered-camps", uid],
-    queryFn: async () => {
-      const res = await axiosSecure.get(`/reg-camps/${uid}`);
-      return res.data;
-    },
-  });
+  const {myRegCampsData, isLoading, refetch} =useMyRegCampsData(uid)
+
+
+  
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
