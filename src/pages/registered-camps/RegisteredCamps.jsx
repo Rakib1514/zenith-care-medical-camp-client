@@ -1,4 +1,6 @@
-import {  useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { useParams } from "react-router-dom";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -10,19 +12,32 @@ import TableRow from "@mui/material/TableRow";
 import { useState } from "react";
 import SectionHeading from "../../components/SectionHeading";
 import UserRegCampRow from "./UserRegCampRow";
-import useMyRegCampsData from "../../hooks/useMyRegCampsData";
+import Search from "antd/es/input/Search";
+import { Button } from "antd";
 
 const RegisteredCamps = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const { uid } = useParams();
+  const axiosSecure = useAxiosSecure();
+  const [myRegCampsData, setMyRegCampsData] = useState([]);
 
+  const { data, isLoading, refetch } = useQuery({
+    queryKey: ["my-registered-camps", uid],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/reg-camps/${uid}`);
+      setMyRegCampsData(res.data);
+      return res.data;
+    },
+  });
 
-  const {myRegCampsData, isLoading, refetch} =useMyRegCampsData(uid)
-
-
-  
+  const onSearch = async (value) => {
+    const filteredData = data.filter((data) =>
+      data.campName.toLowerCase().includes(value.toLowerCase())
+    );
+    setMyRegCampsData(filteredData);
+  };
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -44,6 +59,16 @@ const RegisteredCamps = () => {
           heading="Registered camps"
           subHeading="Take a care of your health"
         />
+        <Search
+          placeholder="input search text"
+          onSearch={onSearch}
+          style={{
+            width: 200,
+          }}
+        />
+        <Button onClick={() => setMyRegCampsData(data)} className="mx-1">
+          Reset
+        </Button>
       </div>
       <Paper sx={{ width: "100%", overflow: "hidden" }}>
         <TableContainer sx={{ maxHeight: 440 }}>

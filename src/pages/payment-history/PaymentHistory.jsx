@@ -1,4 +1,6 @@
+import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -9,20 +11,33 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import SectionHeading from "../../components/SectionHeading";
 import dayjs from "dayjs";
-import { Badge } from "antd";
+import { Badge, Button } from "antd";
 import { useState } from "react";
-import usePayHistory from "../../hooks/usePayHistory";
+import Search from "antd/es/input/Search";
 
 const PaymentHistory = () => {
   const { uid } = useParams();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [myPayHistory, setMyPayHistory] = useState([]);
 
-  const { myPayHistory, isLoading } = usePayHistory(uid);
+  const axiosSecure = useAxiosSecure();
 
-  if (isLoading) {
-    return <h2>Loading in history.....</h2>;
-  }
+  const { data, isLoading } = useQuery({
+    queryKey: ["payment-history", uid],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/transactions/${uid}`);
+      setMyPayHistory(res.data);
+      return res.data;
+    },
+  });
+
+  const onSearch = async (value) => {
+    const filteredData = data.filter((data) =>
+      data.campName.toLowerCase().includes(value.toLowerCase())
+    );
+    setMyPayHistory(filteredData);
+  };
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -33,6 +48,10 @@ const PaymentHistory = () => {
     setPage(0);
   };
 
+  if (isLoading) {
+    return <h2>Loading in history.....</h2>;
+  }
+
   return (
     <>
       <div>
@@ -40,6 +59,16 @@ const PaymentHistory = () => {
           heading="Registered camps"
           subHeading="Take a care of your health"
         />
+        <Search
+          placeholder="input search text"
+          onSearch={onSearch}
+          style={{
+            width: 200,
+          }}
+        />
+        <Button onClick={() => setMyPayHistory(data)} className="mx-1">
+          Reset
+        </Button>
       </div>
       <Paper sx={{ width: "100%", overflow: "hidden" }}>
         <TableContainer sx={{ maxHeight: 440 }}>
