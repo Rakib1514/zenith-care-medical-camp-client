@@ -10,7 +10,6 @@ const Home = () => {
       <PopularCamps />
       <UserFeedback />
       <PhotoGallery />
-      <div className="min-h-screen" />
     </div>
   );
 };

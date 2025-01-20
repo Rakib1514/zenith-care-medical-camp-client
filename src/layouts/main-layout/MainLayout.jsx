@@ -1,27 +1,20 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../../components/Navbar";
-// import AOS from 'aos';
-import 'aos/dist/aos.css';
-// import { useEffect } from "react";
+import "aos/dist/aos.css";
+import Footer from "../../components/Footer";
 
 const MainLayout = () => {
-  // useEffect(() => {
-  //   AOS.init({
-  //     duration: 1000, // Animation duration (in milliseconds)
-  //     once: true,     
-  //   });
-  // }, []);
   return (
     <div>
       <header>
         <nav className="fixed z-10 w-full">
-          <Navbar/>
+          <Navbar />
         </nav>
       </header>
       <main className="pt-16">
         <Outlet />
       </main>
-      <footer></footer>
+      <Footer />
     </div>
   );
 };

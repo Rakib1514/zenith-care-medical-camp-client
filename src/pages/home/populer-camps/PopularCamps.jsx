@@ -37,7 +37,7 @@ const PopularCamps = () => {
         </div>
       </div>
       <div className="grid lg:grid-cols-2 md:grid-cols-4 gap-4 md:mt-0 mt-4 ">
-        <SimpleParallax>
+        <SimpleParallax orientation="right">
         <img
           src="https://i.ibb.co.com/h8cw3cy/2148352065-1.jpg"
           alt=""
@@ -62,7 +62,7 @@ const PopularCamps = () => {
             }
           })}
         </div>
-        <SimpleParallax>
+        <SimpleParallax orientation="left" scale={1.2}>
         <img
           src="https://i.ibb.co.com/L0KnSbM/84780-1.jpg"
           alt=""

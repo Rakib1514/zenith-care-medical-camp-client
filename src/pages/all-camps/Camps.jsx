@@ -9,6 +9,7 @@ import { DownOutlined } from "@ant-design/icons";
 import axiosPublic from "../../Utils/axiosPublic";
 import { FaColumns } from "react-icons/fa";
 import { BiColumns } from "react-icons/bi";
+import { ScrollRestoration } from "react-router-dom";
 const { Search } = Input;
 
 const Camps = () => {
@@ -128,6 +129,7 @@ const Camps = () => {
   if (isLoading) {
     return (
       <>
+      <ScrollRestoration/>
         <div className="pt-6">
           <HeadingLoading />
         </div>

@@ -10,20 +10,21 @@ const PhotoGallery = () => {
     offset: ["start start", "end end"],
   });
 
-  const scaleUp1 = useTransform(scrollYProgress, [0, 1], [1, 4]);
-  const scaleUp2 = useTransform(scrollYProgress, [0, 1], [1, 5]);
-  const scaleUp3 = useTransform(scrollYProgress, [0, 1], [1, 6]);
-  const scaleUp4 = useTransform(scrollYProgress, [0, 1], [1, 7]);
-  const scaleUp5 = useTransform(scrollYProgress, [0, 1], [1, 8]);
+  const scaleUp1 = useTransform(scrollYProgress, [0, 1], [1, 1.5]);
+  const scaleUp2 = useTransform(scrollYProgress, [0, 1], [1, 1.8]);
+  const scaleUp3 = useTransform(scrollYProgress, [0, 1], [1, 2]);
+  const scaleUp4 = useTransform(scrollYProgress, [0, 1], [1, 2.2]);
+  const scaleUp5 = useTransform(scrollYProgress, [0, 1], [1, 2.4]);
+  //
 
   return (
-    <div className=" ">
+    <div>
       <SectionHeading
-        heading="Photo Gallery"
-        subHeading="A sec in Our Photo Gallery"
+        heading="Moments Captured"
+        subHeading=" Explore a stunning collection of snapshots that tell our story."
       />
-      <div ref={container} className="h-[300vh] relative">
-        <div className="h-screen sticky top-16 bg-gray-300 overflow-hidden">
+      <div ref={container} className="h-[200vh] relative">
+        <div className="h-screen sticky top-16 overflow-hidden">
           <motion.div
             style={{ scale: scaleUp1 }}
             className="w-full h-full top-0 absolute flex justify-center items-center z-30"
