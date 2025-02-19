@@ -1,13 +1,21 @@
 import { useQuery } from "@tanstack/react-query";
-import axiosPublic from "../../../Utils/axiosPublic";
-import { ScrollRestoration, useParams } from "react-router-dom";
+import { FaMobileScreen } from "react-icons/fa6";
+import { IoMdArrowRoundBack } from "react-icons/io";
+import { MdOutlineEmail } from "react-icons/md";
+import { Link, ScrollRestoration, useLocation, useParams } from "react-router-dom";
 import DetailsLoading from "../../../components/loading-components/DetailsLoading";
 import SectionHeading from "../../../components/SectionHeading";
-import { FaMobileScreen } from "react-icons/fa6";
-import { MdOutlineEmail } from "react-icons/md";
+import axiosPublic from "../../../Utils/axiosPublic";
+
 
 const DoctorDetails = () => {
   const { id } = useParams();
+
+
+
+  const location = useLocation();
+  const scroll = location.state?.scroll;
+  console.log(scroll);
 
   const { data: doctor, isLoading } = useQuery({
     queryKey: ["doctor", { id: id }],
@@ -37,6 +45,13 @@ const DoctorDetails = () => {
     <ScrollRestoration />
       <div className="container mx-auto min-h-screen px-4 mb-12">
         <SectionHeading heading={specialty} subHeading={name} />
+        <Link to="/" state={{scroll: scroll}}>
+        <button  className="btn btn-ghost">
+            <IoMdArrowRoundBack />
+            Back to doctors
+          </button>
+        </Link>
+          
         <div className="grid grid-cols-12 gap-6">
           <div className="col-span-9">
             <img

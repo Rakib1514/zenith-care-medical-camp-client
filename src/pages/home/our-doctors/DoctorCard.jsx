@@ -9,7 +9,7 @@ const DoctorCard = ({ doctor }) => {
 
   return (
     <div className="rounded-sm">
-      <Link to={`/doctor/${_id}`}>
+      <Link to={`/doctor/${_id}` } state={{scroll: "doctors"}} >
         <div className="doctor-img-container">
           <img
             src={image}

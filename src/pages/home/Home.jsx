@@ -4,8 +4,22 @@ import PhotoGallery from "./photo-gallery/PhotoGallery";
 import PopularCamps from "./populer-camps/PopularCamps";
 import UserFeedback from "./user-feedback/UserFeedback";
 import OurDoctors from "./our-doctors/OurDoctors";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 const Home = () => {
+
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state && location.state.scroll) {
+      const target = document.getElementById("doctor-cards-container");
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [location]);
+  
   return (
     <div className="min-h-svh">
       <Helmet title={`Zenith | Home`}/>
