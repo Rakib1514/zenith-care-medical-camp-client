@@ -25,16 +25,18 @@ const Footer = () => {
         </nav>
         <nav>
           <h6 className="footer-title">Company</h6>
-          <Link to={'/about-us'} className="link link-hover">About Zenith</Link>
-          <a className="link link-hover">Our Mission</a>
-          <a className="link link-hover">Contact Us</a>
+          <Link to={'/about-us'} state={{id: "about-us"}} className="link link-hover">About Zenith</Link>
+          <Link to={'/about-us'} state={{id: "our-mission"}} className="link link-hover">Our Mission</Link>
+          <Link to={'/about-us'} state={{id: "our-team"}} className="link link-hover">Our Team</Link>
+          <Link to={'/about-us'} state={{id: "contact-us"}} className="link link-hover">Contact Us</Link>
           
         </nav>
         <nav>
           <h6 className="footer-title">Legal</h6>
-          <a className="link link-hover">Terms of Service</a>
-          <a className="link link-hover">Privacy Policy</a>
-          <a className="link link-hover">Data Protection</a>
+          <Link to={'/legal'} state={{id: 'legal'}} className="link link-hover">Legal Info</Link>
+          <Link to={'/legal'} state={{id: 'service-terms'}} className="link link-hover">Terms of Service</Link>
+          <Link to={'/legal'} state={{id: 'privacy-policy'}} className="link link-hover">Privacy Policy</Link>
+          <Link to={'/legal'} state={{id: 'data-protection'}} className="link link-hover">Data Protection</Link>
         </nav>
       </div>
     </footer>

@@ -29,7 +29,7 @@ const AboutPage = () => {
   }, [location]);
 
   return (
-    <div className="min-h-screen bg-menu_bg font-montserrat text-gray-800">
+    <div id="about-us" className="min-h-screen bg-menu_bg font-montserrat text-gray-800">
       {/* Hero / Introduction */}
       <header className="bg-primary px-4 py-20 text-center text-white">
         <SectionHeading heading="About Us" subHeading="Our Journey & Vision" />
@@ -64,7 +64,7 @@ const AboutPage = () => {
       </section>
 
       {/* Our Mission Section */}
-      <section className="bg-secondary py-16 text-white">
+      <section id="our-mission" className="bg-secondary py-16 text-white">
         <div className="container mx-auto px-4">
           <SectionHeading heading="Our Mission" subHeading="What Drives Us" />
           <div className="mx-auto mt-8 max-w-3xl text-center">
@@ -79,7 +79,7 @@ const AboutPage = () => {
       </section>
 
       {/* Our Team Section */}
-      <section className="container mx-auto px-4 py-16">
+      <section id="our-team" className="container mx-auto px-4 py-16">
         <SectionHeading heading="Our Team" subHeading="Meet the Experts" />
         <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-3">
           {/* Team Member Card */}
@@ -114,7 +114,7 @@ const AboutPage = () => {
       </section>
 
       {/* Contact / Call to Action Section */}
-      <section className="bg-g1 px-4 py-16 text-white">
+      <section id="contact-us" className="bg-g1 px-4 py-16 text-white">
         <SectionHeading
           heading="Get In Touch"
           subHeading="We’re Here to Help"
