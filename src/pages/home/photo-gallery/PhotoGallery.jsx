@@ -17,7 +17,7 @@ const PhotoGallery = () => {
   const scaleUp5 = useTransform(scrollYProgress, [0, 1], [1, 3.4]);
 
   return (
-    <div className="mb-12">
+    <div className="mb-16">
       <div className="container mx-auto px-4">
         <SectionHeading
           heading="Moments Captured"

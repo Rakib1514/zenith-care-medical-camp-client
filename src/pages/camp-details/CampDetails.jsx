@@ -41,6 +41,8 @@ const CampDetails = () => {
       return res.data;
     },
   });
+     
+
 
   const {
     image,

@@ -22,12 +22,12 @@ const DoctorCard = ({ doctor }) => {
       </Link>
       <div className="border border-gray-300 p-4">
         <p className="text-2xl font-semibold text-primary">{name}</p>
-        <p>{specialty}</p>
+        <p className="text-gray-600">{specialty}</p>
       </div>
-      <p className="border border-t-0 border-gray-300 p-4">
+      <p className="border border-t-0 border-gray-300 p-4 text-gray-600">
         {shortDescription}
       </p>
-      <div className="rounded-sm rounded-t-none border border-t-0 border-gray-300 p-4">
+      <div className="rounded-sm rounded-t-none border border-t-0 border-gray-300 p-4 text-gray-600">
         <div className="flex items-center gap-2">
           <FaMobileScreen /> <span>{phone}</span>
         </div>

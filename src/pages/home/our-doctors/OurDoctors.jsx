@@ -18,7 +18,7 @@ const OurDoctors = () => {
 
   if(isLoading) return <CardLoading/>
   return (
-    <div className="mt-12 container mx-auto px-4 campCardContainer mb-12">
+    <div className="mt-16 container mx-auto px-4 campCardContainer mb-12">
       <SectionHeading heading="Meet Our Expert Doctors" subHeading="Dedicated professionals committed to your health and well-being."/>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
       {doctors.map((doctor) => <DoctorCard key={doctor._id} doctor={doctor} />)}

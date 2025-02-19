@@ -26,7 +26,7 @@ const UserFeedback = () => {
   }
 
   return (
-    <div className="mt-12 container mx-auto px-4 campCardContainer mb-12 ">
+    <div className="mt-16 container mx-auto px-4 campCardContainer mb-12 ">
       <SectionHeading
         heading="Voices of Healing"
         subHeading="Compassionate care, shared by our participant"
