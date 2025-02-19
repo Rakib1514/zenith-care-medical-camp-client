@@ -30,9 +30,15 @@ const Navbar = () => {
           <li>
             <NavLink to="/dashboard">Dashboard</NavLink>
           </li>
+          <li>
+            <NavLink to="/about-us">About Us</NavLink>
+          </li>
         </>
       ) : (
         <>
+          <li>
+            <NavLink to="/about-us">About Us</NavLink>
+          </li>
           <li>
             <Link to="/join-us">Join Us</Link>
           </li>
@@ -82,12 +88,12 @@ const Navbar = () => {
   }
 
   return (
-    <div className="bg-menu_bg ">
-      <div className="navbar container mx-auto">
+    <div className="bg-menu_bg">
+      <div className="container navbar mx-auto">
         <div className="navbar-start">
           <Link
             to="/"
-            className="md:text-xl  md:font-semibold font-bold flex items-center gap-1"
+            className="flex items-center gap-1 font-bold md:text-xl md:font-semibold"
           >
             <img
               src="https://i.ibb.co.com/020DWTL/istockphoto-1321617070-1024x1024-1.png"
@@ -134,7 +140,7 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+            className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-base-100 p-2 shadow"
           >
             {links}
           </ul>

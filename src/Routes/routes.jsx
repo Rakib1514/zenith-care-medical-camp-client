@@ -19,6 +19,7 @@ import UserProfile from "../pages/profile/UserProfile";
 import Analytics from "../pages/Analytics/Analytics";
 import Error from "../pages/error-page/Error";
 import DoctorDetails from "../pages/home/our-doctors/DoctorDetails";
+import AboutUs from "../pages/About-us/AboutUs";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
       {
         path: "/doctor/:id",
         element: <DoctorDetails />,
+      },
+      {
+        path: "/about-us",
+        element: <AboutUs />,
       },
     ],
   },
