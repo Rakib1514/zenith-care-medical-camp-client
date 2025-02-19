@@ -21,6 +21,7 @@ import Error from "../pages/error-page/Error";
 import DoctorDetails from "../pages/home/our-doctors/DoctorDetails";
 import AboutUs from "../pages/About-us/AboutUs";
 import Legal from "../pages/Legal/Legal";
+import ServicesPage from "../pages/Services-Page/ServicesPage";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
       {
         path: "/legal",
         element: <Legal />,
+      },
+      {
+        path: "/services",
+        element: <ServicesPage />,
       },
     ],
   },

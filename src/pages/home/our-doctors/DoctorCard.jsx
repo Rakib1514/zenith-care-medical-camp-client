@@ -5,11 +5,12 @@ import { MdOutlineEmail } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 const DoctorCard = ({ doctor }) => {
-  const { image, name, specialty, shortDescription, phone, email,_id } = doctor;
+  const { image, name, specialty, shortDescription, phone, email, _id } =
+    doctor;
 
   return (
     <div className="rounded-sm">
-      <Link to={`/doctor/${_id}` } state={{scroll: "doctors"}} >
+      <Link to={`/doctor/${_id}`} state={{ scroll: "doctors" }}>
         <div className="doctor-img-container">
           <img
             src={image}
@@ -21,7 +22,10 @@ const DoctorCard = ({ doctor }) => {
         </div>
       </Link>
       <div className="border border-gray-300 p-4">
-        <p className="text-2xl font-semibold text-primary">{name}</p>
+        <Link to={`/doctor/${_id}`} state={{ scroll: "doctors" }}>
+          <p className="text-2xl font-semibold text-primary">{name}</p>
+        </Link>
+
         <p className="text-gray-600">{specialty}</p>
       </div>
       <p className="border border-t-0 border-gray-300 p-4 text-gray-600">

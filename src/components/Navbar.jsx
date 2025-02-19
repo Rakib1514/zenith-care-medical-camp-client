@@ -24,14 +24,17 @@ const Navbar = () => {
       <li>
         <NavLink to="/camps">All Camps</NavLink>
       </li>
-
       {user ? (
         <>
           <li>
             <NavLink to="/dashboard">Dashboard</NavLink>
           </li>
+          
           <li>
             <NavLink to="/about-us">About Us</NavLink>
+          </li>
+          <li>
+            <NavLink to="/services" >Services</NavLink>
           </li>
         </>
       ) : (
