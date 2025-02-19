@@ -6,9 +6,9 @@ import UserFeedback from "./user-feedback/UserFeedback";
 import OurDoctors from "./our-doctors/OurDoctors";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import AppointmentFAQSection from "./appointment-faq/AppointmentFAQ";
 
 const Home = () => {
-
   const location = useLocation();
 
   useEffect(() => {
@@ -19,14 +19,15 @@ const Home = () => {
       }
     }
   }, [location]);
-  
+
   return (
     <div className="min-h-svh">
-      <Helmet title={`Zenith | Home`}/>
+      <Helmet title={`Zenith | Home`} />
       <Banner />
       <PopularCamps />
       <UserFeedback />
-      <OurDoctors/>
+      <OurDoctors />
+      <AppointmentFAQSection />
       <PhotoGallery />
     </div>
   );
