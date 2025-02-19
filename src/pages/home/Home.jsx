@@ -7,6 +7,8 @@ import OurDoctors from "./our-doctors/OurDoctors";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import AppointmentFAQSection from "./appointment-faq/AppointmentFAQ";
+import NewsLetter from "./News-Letter/NewsLetter";
+import TopDonorsMarquee from "./Top-donors/TopDonorsMarquee";
 
 const Home = () => {
   const location = useLocation();
@@ -28,7 +30,9 @@ const Home = () => {
       <UserFeedback />
       <OurDoctors />
       <AppointmentFAQSection />
+      <TopDonorsMarquee/>
       <PhotoGallery />
+      <NewsLetter/>
     </div>
   );
 };

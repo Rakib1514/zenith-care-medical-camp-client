@@ -8,17 +8,17 @@ const { Option } = Select;
 const AppointmentFAQSection = () => {
   const [form] = Form.useForm();
 
-  // Handle form submission
+
   const onFinish = (values) => {
-    // You can process or send 'values' to your server here if needed
+    
     message.success("We got your request. We will contact you soon.");
     form.resetFields();
   };
 
   return (
-    <div className="mx-auto w-full max-w-7xl px-4 py-16 md:flex md:space-x-8">
+    <div className="mx-auto w-full container px-4 py-16 md:flex md:space-x-8">
       {/* Left Column: Book an Appointment (Ant Design Form) */}
-      <div className="md:w-1/2 bg-primary p-8 rounded-md text-white mb-8 md:mb-0">
+      <div className="md:w-1/2 bg-gradient-to-br from-secondary to-g2  p-8 rounded-md text-white mb-8 md:mb-0">
         <SectionHeading
           heading="Book an Appointment"
           subHeading="Easy Scheduling & Secure"
@@ -58,7 +58,10 @@ const AppointmentFAQSection = () => {
                 rules={[{ required: true, message: "Please select a doctor" }]}
               >
                 <Select placeholder="-- Select Doctor --">
-                  <Option value="dr-john">Dr. John Doe</Option>
+                  <Option value="dr-john">Dr. Angela L</Option>
+                  <Option value="dr-john">Dr. Anita Mehra</Option>
+                  <Option value="dr-john">Dr. Olivier Moreau</Option>
+                  <Option value="dr-john">Dr. Lukas Weber</Option>
                   <Option value="dr-jane">Dr. Jane Smith</Option>
                 </Select>
               </Form.Item>
