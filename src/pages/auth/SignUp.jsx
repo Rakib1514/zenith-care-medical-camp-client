@@ -42,20 +42,20 @@ const SignUp = () => {
       const res = await axiosSecure.post("/users", userInfo);
 
       if (!res.data.insertedId) {
-        console.log("failed to post userInfo to DB");
+        throw new Error("userInfo failed to save in db")
       }
       messageSuccess(`Hello, "${values.name}". Welcome To Zenith Care Family`);
       navigate("/");
       form.resetFields();
     } catch (error) {
-      console.log(error.message);
+      // console.log(error.message);
       setMessage(error.message);
       setLoading(false);
     }
   };
 
   const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
+    // console.log("Failed:", errorInfo);
   };
 
   const handleImageUpload = async (options) => {
@@ -83,7 +83,7 @@ const SignUp = () => {
       }
     } catch (error) {
       onError("Upload failed");
-      console.log(error);
+      // console.log(error);
     }
   };
 

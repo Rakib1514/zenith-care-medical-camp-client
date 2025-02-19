@@ -35,7 +35,7 @@ const UserProfile = () => {
       setToggleForm(false);
       messageSuccess(`Profile Updated`);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     } finally {
       setUpdateBtnLoading(false);
     }

@@ -2,7 +2,6 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import PropTypes from "prop-types";
-
 import useAuth from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";

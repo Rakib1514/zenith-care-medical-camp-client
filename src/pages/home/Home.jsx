@@ -3,6 +3,7 @@ import Banner from "./Hero/Banner";
 import PhotoGallery from "./photo-gallery/PhotoGallery";
 import PopularCamps from "./populer-camps/PopularCamps";
 import UserFeedback from "./user-feedback/UserFeedback";
+import OurDoctors from "./our-doctors/OurDoctors";
 
 const Home = () => {
   return (
@@ -11,6 +12,7 @@ const Home = () => {
       <Banner />
       <PopularCamps />
       <UserFeedback />
+      <OurDoctors/>
       <PhotoGallery />
     </div>
   );

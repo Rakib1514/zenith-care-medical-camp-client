@@ -72,7 +72,7 @@ const RegisterCampModal = ({ setIsModalOpen, isModalOpen, camp, refetch, setConf
       // todo: extra work.
       setConfirmModal(true);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     } finally {
       setRegBtnLoading(false);
     }

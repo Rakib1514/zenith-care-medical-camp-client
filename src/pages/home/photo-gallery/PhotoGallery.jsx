@@ -17,11 +17,13 @@ const PhotoGallery = () => {
   const scaleUp5 = useTransform(scrollYProgress, [0, 1], [1, 3.4]);
 
   return (
-    <div>
-      <SectionHeading
-        heading="Moments Captured"
-        subHeading=" Explore a stunning collection of snapshots that tell our story."
-      />
+    <div className="mb-12">
+      <div className="container mx-auto px-4">
+        <SectionHeading
+          heading="Moments Captured"
+          subHeading=" Explore a stunning collection of snapshots that tell our story."
+        />
+      </div>
       <div ref={container} className="h-[200vh] relative">
         <div className="h-screen sticky top-16 overflow-hidden">
           <motion.div

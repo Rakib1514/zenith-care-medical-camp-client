@@ -8,7 +8,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { Helmet } from "react-helmet-async";
 import PaymentLoading from "../../components/loading-components/PaymentLoading";
 
-// TODO: add publishable key
+
 const stripePromise = loadStripe(import.meta.env.VITE_PK);
 
 const Payment = () => {

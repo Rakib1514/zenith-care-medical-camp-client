@@ -12,7 +12,7 @@ const Navbar = () => {
     try {
       await userSignOut();
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 

@@ -26,7 +26,7 @@ const UserRegCampRow = ({ row, page, rowsPerPage, idx, refetch }) => {
       messageSuccess('Registration Canceled')
       refetch();
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     } finally {
       setCancelBtnLoading(false);
     }

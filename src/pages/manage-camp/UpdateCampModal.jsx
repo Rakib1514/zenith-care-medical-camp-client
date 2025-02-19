@@ -53,7 +53,7 @@ const UpdateCampModal = ({ camp, isModalOpen, setIsModalOpen }) => {
   };
 
   const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
+    // console.log("Failed:", errorInfo);
   };
 
   const handleImageUpload = async (options) => {
@@ -81,7 +81,7 @@ const UpdateCampModal = ({ camp, isModalOpen, setIsModalOpen }) => {
       }
     } catch (error) {
       onError("Upload failed");
-      console.log(error);
+      // console.log(error);
     }
   };
 

@@ -1,0 +1,37 @@
+.doctor-img-container {
+  position: relative;
+  overflow: hidden;
+  
+}
+
+.doctor-img-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(45deg, #1b467b53, #0094ea71);
+  z-index: 1;
+  transition: all 0.5s;
+}
+
+.doctor-img-container:hover::after {
+  width: 100%;
+}
+
+.plus-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 10rem; /* Adjust size as needed */
+  color: rgba(255, 255, 255, 0.7);
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  z-index: 2;
+}
+
+.doctor-img-container:hover .plus-icon {
+  opacity: 1;
+}

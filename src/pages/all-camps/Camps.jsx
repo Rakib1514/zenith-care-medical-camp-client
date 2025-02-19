@@ -48,7 +48,7 @@ const Camps = () => {
       }
       setCampsData(res.data);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     } finally {
       setSearchLoading(false);
     }

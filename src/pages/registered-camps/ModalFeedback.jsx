@@ -47,7 +47,7 @@ const ModalFeedBack = ({ isModalOpen, setIsModalOpen, regCamp,refetch }) => {
     // Todo: give a success modal thanks for feed back with auto close
     feedBackMessage()
    } catch (error) {
-    console.log(error);
+    // console.log(error);
    } finally{
     setSubmitBtnLoading(false)
    }
