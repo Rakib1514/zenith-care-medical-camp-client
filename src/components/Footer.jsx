@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer>
-      <div className="footer bg-base-200 p-10 text-base-content">
+    <footer className="bg-base-200 py-10 px-4">
+      <div className="footer text-base-content container mx-auto">
         <aside>
           <img
             src="https://i.ibb.co.com/020DWTL/istockphoto-1321617070-1024x1024-1.png"
