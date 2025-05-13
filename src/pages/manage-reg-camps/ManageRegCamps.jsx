@@ -14,7 +14,7 @@ import ManageRegCampAdminRow from "./ManageRegCampAdminRow";
 import Search from "antd/es/input/Search";
 import { Button } from "antd";
 import { Helmet } from "react-helmet-async";
-import Loading from "../../components/loading-components/loading";
+import Loading from "../../components/loading-components/Loading";
 
 const ManageRegCamps = () => {
   const [page, setPage] = useState(0);

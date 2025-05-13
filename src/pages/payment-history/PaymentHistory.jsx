@@ -15,7 +15,7 @@ import { Badge, Button } from "antd";
 import { useState } from "react";
 import Search from "antd/es/input/Search";
 import { Helmet } from "react-helmet-async";
-import Loading from "../../components/loading-components/loading";
+import Loading from "../../components/loading-components/Loading";
 
 const PaymentHistory = () => {
   const { uid } = useParams();

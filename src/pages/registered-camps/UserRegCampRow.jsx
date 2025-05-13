@@ -6,8 +6,8 @@ import TableRow from "@mui/material/TableRow";
 import { useState } from "react";
 import dayjs from "dayjs";
 import { Badge, Button,  Popconfirm } from "antd";
-import ModalFeedBack from "./ModalFeedBack";
 import { messageSuccess } from "../../Utils/messageAlert";
+import ModalFeedBack from "./ModalFeedback";
 
 const UserRegCampRow = ({ row, page, rowsPerPage, idx, refetch }) => {
   const [cancelBtnLoading, setCancelBtnLoading] = useState(false);
@@ -27,6 +27,7 @@ const UserRegCampRow = ({ row, page, rowsPerPage, idx, refetch }) => {
       refetch();
     } catch (error) {
       // console.log(error);
+      
     } finally {
       setCancelBtnLoading(false);
     }

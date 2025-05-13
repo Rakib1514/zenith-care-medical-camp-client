@@ -13,7 +13,7 @@ import ManageTableRow from "./ManageTableRow";
 import Search from "antd/es/input/Search";
 import { Button } from "antd";
 import { Helmet } from "react-helmet-async";
-import Loading from "../../components/loading-components/loading";
+import Loading from "../../components/loading-components/Loading";
 
 const ManageCamps = () => {
   const [page, setPage] = useState(0);

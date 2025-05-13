@@ -1,5 +1,5 @@
 import Lottie from "lottie-react";
-import { Button, Checkbox, Form, Input } from "antd";
+import { Button, Checkbox, Form, Input, Modal } from "antd";
 import animation from "../../assets/sign-in-animation.json";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
@@ -12,6 +12,7 @@ const SignIn = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
+  const [form] = Form.useForm();
 
   const from = location.state?.from?.pathname || "/";
 
@@ -27,7 +28,6 @@ const SignIn = () => {
       navigate(from);
     } catch (error) {
       setLoading(false);
-
       if (
         error.message === "Firebase: Error (auth/invalid-credential)." ||
         error.message === "Firebase: Error (auth/invalid-email)."
@@ -38,36 +38,48 @@ const SignIn = () => {
       }
     }
   };
+
   const onFinishFailed = (errorInfo) => {
-    // console.log("Failed:", errorInfo);
     setLoading(false);
+  };
+
+  // Function to show confirmation modal and auto-fill form
+  const showAdminConfirm = () => {
+    Modal.confirm({
+      title: "Test as Admin",
+      content: "Would you like to auto-fill the admin credentials?",
+      okText: "Confirm",
+      cancelText: "Cancel",
+      onOk() {
+        form.setFieldsValue({
+          email: "admin@zenith.com",
+          password: "xadmin",
+        });
+      },
+    });
   };
 
   return (
     <div className="grid md:grid-cols-2 grid-cols-1 overflow-x-hidden">
-      <Helmet title="Zenith | Sign In"/>
+      <Helmet title="Zenith | Sign In" />
       <div className="row-start-2 md:row-auto">
         <Lottie className="h-96" animationData={animation} loop={true} />
       </div>
       <div>
         <div className="flex justify-center">
-        <GoogleSignIn />
+          <GoogleSignIn />
+        </div>
+        <div className="flex justify-center my-4">
+          <Button onClick={showAdminConfirm}>Test as Admin</Button>
         </div>
         <div className="divider">OR</div>
         <Form
+          form={form}
           name="basic"
-          labelCol={{
-            span: 8,
-          }}
-          wrapperCol={{
-            span: 16,
-          }}
-          style={{
-            maxWidth: 600,
-          }}
-          initialValues={{
-            remember: true,
-          }}
+          labelCol={{ span: 8 }}
+          wrapperCol={{ span: 16 }}
+          style={{ maxWidth: 600 }}
+          initialValues={{ remember: true }}
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
           autoComplete="off"
@@ -75,12 +87,7 @@ const SignIn = () => {
           <Form.Item
             label="Email"
             name="email"
-            rules={[
-              {
-                required: true,
-                message: "Please input your Email!",
-              },
-            ]}
+            rules={[{ required: true, message: "Please input your Email!" }]}
           >
             <Input />
           </Form.Item>
@@ -88,12 +95,7 @@ const SignIn = () => {
           <Form.Item
             label="Password"
             name="password"
-            rules={[
-              {
-                required: true,
-                message: "Please input your password!",
-              },
-            ]}
+            rules={[{ required: true, message: "Please input your password!" }]}
           >
             <Input.Password />
           </Form.Item>
@@ -124,9 +126,7 @@ const SignIn = () => {
               </p>
             </Link>
           </Form.Item>
-          
         </Form>
-        
       </div>
     </div>
   );

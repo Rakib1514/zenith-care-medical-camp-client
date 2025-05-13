@@ -196,7 +196,7 @@ const Camps = () => {
         ) : currentItems.length ? (
           <div
             className={`grid ${
-              twoColumn ? "lg:grid-cols-2" : "lg:grid-cols-3"
+              twoColumn ? "lg:grid-cols-3" : "lg:grid-cols-4"
             } md:grid-cols-2 grid-cols-1 gap-6 campCardContainer`}
           >
             {currentItems.map((camp, idx) => (
